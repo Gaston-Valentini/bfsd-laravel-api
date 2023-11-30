@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('game', function (Blueprint $table) {
             $table->id();
             $table->foreign('user_id')->references("id")->on("user");
-            $table->string('name');
-            $table->string('description');
-            $table->string('image');
-            $table->timestamps();
+            $table->string('name', 50);
+            $table->string('description', 500);
+            $table->string('image', 255);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
