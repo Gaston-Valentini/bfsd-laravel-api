@@ -10,7 +10,7 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 
 ## 📋 Contenido del Readme
 
-- ### 🚀 [Descripcion](#descripcion)
+- ### 🚀 [Descripción](#descripcion)
 - ### 🎯 [Objectivo](#objectivo)
 - ### 🛠️ [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - ### 📉 [Diagrama de la Base de Datos](#diagrama-de-la-base-de-datos)
@@ -21,8 +21,7 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 - ### 📧 [Contacto](#contacto)
 
 
-
-# 🚀 Descripcion
+# 🚀 Descripción
 
 Este proyecto del Bootcamp Full Stack está enfocado en PHP, en él hemos puesto a prueba nuestros conocimientos en PHP y Laravel. Trabajando en equipo para crear una aplicación web LFG (Looking For Group).
 
