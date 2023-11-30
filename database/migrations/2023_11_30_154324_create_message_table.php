@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreign("user_id")->references("id")->on("user");
             $table->foreign("room_id")->references("id")->on("room");
-            $table->string("message");
-            $table->timestamps();
+            $table->string("message", 500);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
