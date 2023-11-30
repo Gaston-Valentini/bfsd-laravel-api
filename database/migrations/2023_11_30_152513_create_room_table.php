@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('game_id')->references('id')->on('game');
-            $table->string('name');
-            $table->string('image');
-            $table->timestamps();
-        });
+            $table->string('name',50);
+            $table->string('image_url', 255);
+            $table->boolean('is_active')->default(true);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();        });
     }
 
     /**
