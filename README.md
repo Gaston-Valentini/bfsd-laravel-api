@@ -90,9 +90,11 @@ Podéis contactar con nosotros a través de los siguientes medios de comunicaci�
 
 - ***Gaston Valentini***  
 Contacta conmigo por correo electrónico [](mailto:). Además, puedes en seguirme en [GitHub]((https://github.com/Gaston-Valentini))   | [LinkedIn](https://www.linkedin.com/in/gastonvalentini/)
-<br>
+
+
 - ***Marta Guillem***  
 Contacta conmigo por correo electrónico [martaguillem@outlook.es](mailto:martaguillem@outlook.es). Además, puedes en seguirme en [GitHub]((https://github.com/martaguillemolmos))   | [LinkedIn](https://www.linkedin.com/in/marta-guillem-olmos-b26b9b293/)
-<br>
+
+
 - ***Antonio Ainsa***  
 Contacta conmigo por correo electrónico [](mailto:). Además, puedes en seguirme en [GitHub]((https://github.com/antonioinsa))   | [LinkedIn](https://www.linkedin.com/in/antonioinsa/)
