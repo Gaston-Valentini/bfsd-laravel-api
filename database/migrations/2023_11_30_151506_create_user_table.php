@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("nickname");
             $table->string("email");
             $table->string("password");
+            $table->enum('role', ["user", "admin"]);
             $table->string("image");
             $table->timestamps();
             $table->string("is_active");
