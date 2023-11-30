@@ -12,6 +12,13 @@ class Room extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'game_id',
+        'name',
+        'image_url',
+        'is_active'
+    ];
+    
     //Relación uno a muchos a la tabla a Message y Member
     public function comments(): HasMany
     {
