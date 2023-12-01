@@ -18,7 +18,7 @@ class Room extends Model
         'image_url',
         'is_active'
     ];
-    
+
     //Relación uno a muchos a la tabla a Message y Member
     public function comments(): HasMany
     {
