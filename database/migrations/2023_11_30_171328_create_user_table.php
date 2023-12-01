@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("email", 50)->unique();
             $table->string("password");
             $table->enum('role', ["user", "admin"]);
-            $table->string("image", 255);
+            $table->string("image", 255)->default("https://cdn-icons-png.flaticon.com/512/456/456212.png");
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
             $table->boolean("is_active")->default(true);
