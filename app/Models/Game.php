@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,8 +17,8 @@ class Game extends Model
         'image'
     ];
 
-    public function game()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(User::class);
     }
 }
