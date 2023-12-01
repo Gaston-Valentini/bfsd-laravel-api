@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,8 +25,24 @@ class User extends Model
         
     ];
 
-    public function user()
+    public function games(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Game::class);
+    }
+
+    public function rooms(): BelongsToMany
+    {
+        return $this->belongsToMany(Room::class);
+    }
+
+    public function creator_room(): HasMany
+    {
+        return $this->hasMany(Room::class);
+    }
+
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class);
     }
 }
