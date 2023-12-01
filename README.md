@@ -59,19 +59,16 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 1. Clona este repositorio en tu máquina local usando el siguiente comando: `git clone [URL del repositorio]`.
 2. A continuación instala todas las dependencias con el comando ` composer install `
-3. Conectamos nuestro repositorio con la base de datos mediante las credenciales en el archivo db.ts o, en este caso, con las variables de entorno que se encuentran en el archivo .env
+3. Conectamos nuestro repositorio con la base de datos mediante las credenciales en el archivo con las variables de entorno que se encuentran en el archivo .env
 
-    ``` js
-        PORT = 
-        
-        DB_TYPE = 
-        DB_HOST =
-        DB_PORT = 
-        DB_USERNAME =
-        DB_PASSWORD = 
-        DB_NAME = 
+    ``` 
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=
 
-        JWT_SECRET = 
     ```  
 
 4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
@@ -89,7 +86,7 @@ Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta
 Podéis contactar con nosotros a través de los siguientes medios de comunicación:
 
 - ***Gaston Valentini***  
-Contacta conmigo por correo electrónico [](mailto:). Además, puedes en seguirme en [GitHub]((https://github.com/Gaston-Valentini))   | [LinkedIn](https://www.linkedin.com/in/gastonvalentini/)
+Contacta conmigo por correo electrónico [gastonvalentiniruiz@gmail.com](mailto:gastonvalentiniruiz@gmail.com). Además, puedes en seguirme en [GitHub]((https://github.com/Gaston-Valentini))   | [LinkedIn](https://www.linkedin.com/in/gastonvalentini/)
 
 
 - ***Marta Guillem***  
@@ -97,4 +94,4 @@ Contacta conmigo por correo electrónico [martaguillem@outlook.es](mailto:martag
 
 
 - ***Antonio Ainsa***  
-Contacta conmigo por correo electrónico [](mailto:). Además, puedes en seguirme en [GitHub]((https://github.com/antonioinsa))   | [LinkedIn](https://www.linkedin.com/in/antonioinsa/)
+Contacta conmigo por correo electrónico [antonioinsa@tutanota.com](mailto:antonioinsa@tutanota.com). Además, puedes en seguirme en [GitHub]((https://github.com/antonioinsa))   | [LinkedIn](https://www.linkedin.com/in/antonioinsa/)
