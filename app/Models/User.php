@@ -35,6 +35,12 @@ class User extends Model
         return $this->belongsToMany(Room::class);
     }
 
+    public function creator_room(): HasMany
+    {
+        return $this->hasMany(Room::class);
+    }
+
+
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
