@@ -28,4 +28,4 @@ Route::get('/', function (Request $request) {
 });
 
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/register', [AuthController::class, 'register']);
