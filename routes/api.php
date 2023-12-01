@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,9 @@ Route::get('/', function (Request $request) {
 });
 
 
-Route::get('/register', [AuthController::class, 'register']);
+//CRUD ROOMS
+Route::get('/room', [RoomController::class, 'getAllRooms']);
+Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
+Route::post('/room', [RoomController::class, 'createRoom']);
+Route::put('/room', [RoomController::class, 'updateRoom']);
+Route::delete('/room', [RoomController::class, 'deleteRoomById']);

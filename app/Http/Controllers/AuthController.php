@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 
 class AuthController extends Controller
 {
