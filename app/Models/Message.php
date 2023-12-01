@@ -1,30 +1,21 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
-
-class Room extends Model
+class Message extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'game_id',
-        'name',
-        'image_url',
-        'is_active'
+        'message' 
     ];
 
-
-
-    //Relación muchos a muchos con la tabla User
-    public function users(): BelongsToMany
+    public function post(): BelongsTo
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
-
-
