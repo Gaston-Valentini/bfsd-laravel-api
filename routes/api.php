@@ -29,5 +29,10 @@ Route::get('/', function (Request $request) {
 });
 
 
-Route::get('/register', [AuthController::class, 'register']);
-Route::get('/allmessages', [MessageController::class, 'getAllMessages']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/getallmessages', [MessageController::class, 'getAllMessages']);
+Route::get('/getmessagebyid', [MessageController::class, 'getMessageById']);
+Route::put('/updatemessagebyid', [MessageController::class, 'updateMessageById']);
+Route::delete('/deletemessagebyid', [MessageController::class, 'deleteMessageById']);
+Route::post('/createMessage', [MessageController::class, 'createMessage']);
+
