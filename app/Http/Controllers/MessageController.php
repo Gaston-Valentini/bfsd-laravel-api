@@ -109,5 +109,31 @@ class MessageController extends Controller
         }
     }
 
+    public function deleteMessageById(Request $request, $id)
+    {
+        try {
+            $deleteMessage = Message::destroy($id);
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Message deleted",
+                    "data" => $deleteMessage
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error deleting message by id"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
     
 }
