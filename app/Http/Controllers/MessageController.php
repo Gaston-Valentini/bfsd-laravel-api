@@ -17,7 +17,7 @@ class MessageController extends Controller
     {
         try {
             $messages = Message::query()->get();
-                
+
             return response()->json(
                 [
                     "success" => true,
@@ -66,7 +66,48 @@ class MessageController extends Controller
         }
     }
 
+    public function updateMessageById(Request $request, $id)
+    {
+        try {
+            $messages = Message::query()->find($id);
+
+            if (!$messages) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Message doesnt exists"
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            $name = $request->input('message');
+
+            if ($request->has('message')) {
+                $messages->message = $name;
+            }
+
+            $messages->save();
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Message updated"
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error updating message"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
     
-
 }
-
