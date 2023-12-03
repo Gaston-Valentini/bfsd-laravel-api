@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 class RoomController extends Controller
 {
     public function getAllRooms (Request $request){
-    
-            $rooms = Room::query()
+
+            $room = Room::query()
                 ->where('is_active', true|| 1)
                 ->get(['user_id','game_id','name','image_url','is_active']);
 
@@ -19,7 +19,7 @@ class RoomController extends Controller
                 [
                     "success" => true,
                     "message" => "Get rooms successfully",
-                    "data" => $rooms
+                    "data" => $room
                 ],
                 Response::HTTP_OK
             );
@@ -58,7 +58,7 @@ class RoomController extends Controller
         );
     }
 
-    public function updateRoom (Request $request){
+    public function updateRoomById (Request $request){
         return response("update");
     }
 
