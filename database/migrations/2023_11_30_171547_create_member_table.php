@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign("room_id")->references("id")->on("room");
             $table->unique(["user_id", "room_id"]);
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

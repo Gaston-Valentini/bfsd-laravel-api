@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description', 500);
             $table->string('image', 255);
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

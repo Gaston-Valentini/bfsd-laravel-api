@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +28,4 @@ Route::get('/', function (Request $request) {
 });
 
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('/getallmessages', [MessageController::class, 'getAllMessages']);
-Route::get('/getmessagebyid', [MessageController::class, 'getMessageById']);
-Route::put('/updatemessagebyid', [MessageController::class, 'updateMessageById']);
-Route::delete('/deletemessagebyid', [MessageController::class, 'deleteMessageById']);
-Route::post('/createMessage', [MessageController::class, 'createMessage']);
-
+Route::get('/register', [AuthController::class, 'register']);
