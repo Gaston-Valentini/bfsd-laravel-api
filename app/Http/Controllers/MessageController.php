@@ -135,5 +135,36 @@ class MessageController extends Controller
         }
     }
 
-    
+    public function createMessage(Request $request)
+    {
+        Log::info('Create Message');
+        try {
+            $messages = $request->input('message');
+            $newMessage = Message::create([
+                'message' => $messages,
+            ]);
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Message created",
+                    "data" => $newMessage
+                ],
+                Response::HTTP_CREATED
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error creating message"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+
+        return 'Create Message';
+    }
 }
