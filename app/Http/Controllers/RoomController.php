@@ -10,10 +10,7 @@ class RoomController extends Controller
 {
     public function getAllRooms (Request $request){
 
-            $room = Room::query()
-                ->where('is_active', true|| 1)
-                ->get(['user_id','game_id','name','image_url','is_active']);
-
+            $room = Room::all();
 
             return response()->json(
                 [
