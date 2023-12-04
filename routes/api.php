@@ -30,7 +30,9 @@ Route::get('/', function (Request $request) {
     );
 });
 
+//AUTH ROUTES
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //CRUD ROOMS
 Route::get('/room', [RoomController::class, 'getAllRooms']);

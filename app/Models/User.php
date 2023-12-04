@@ -13,7 +13,7 @@ class User extends Model
 
     protected $fillable = [
         'name',
-        'username',
+        'surname',
         'nickname',
         "email",
         "password",
@@ -22,7 +22,7 @@ class User extends Model
 
     protected $hidden = [
         "password"
-        
+
     ];
 
     public function games(): HasMany
