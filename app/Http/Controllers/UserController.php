@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Game;
 use Error;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
@@ -113,7 +114,6 @@ class UserController extends Controller
        dump($userData);
 
        if($userData !== []){
-        // Iterar sobre los datos y actualizar solo los campos que existen en el modelo User
         foreach ($userData as $key => $value) {
         if (property_exists($userUpdate, $key) && $userUpdate->$key !== $value) {
             $userUpdate->$key = $value;
@@ -130,7 +130,8 @@ class UserController extends Controller
         ],
         Response::HTTP_OK
          );
-       } else {
+
+        } else {
         return response()->json(
             [
                 "success" => true,
@@ -148,14 +149,30 @@ class UserController extends Controller
         return response()->json(
             [
                 "success" => false,
-                "message" => "Error in update profile."
+                "message" => "Error in update user."
             ],
             Response::HTTP_INTERNAL_SERVER_ERROR
         );
     }
     }
 
-    public function deleteUserById (Request $request){
-        return response("Delete user");
+    public function deleteUserById (Request $request, $id){
+        try {
+
+            $userDelete = User::find($id);
+            dump($userDelete);
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+        dd($th);
+
+        return response()->json(
+            [
+                "success" => false,
+                "message" => "Error in delete user."
+            ],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
+        }
     }
 }
