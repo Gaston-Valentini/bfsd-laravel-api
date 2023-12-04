@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('room_id');
-            $table->foreign("user_id")->references("id")->on("user");
-            $table->foreign("room_id")->references("id")->on("room");
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("room_id")->references("id")->on("rooms");
             $table->string("message", 500);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

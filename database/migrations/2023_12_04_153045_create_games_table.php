@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references("id")->on("user");
+            $table->foreign('user_id')->references("id")->on("users");
             $table->string('name', 50);
             $table->string('description', 500);
-            $table->string('image', 255);
+            $table->string('image', 255)->default("https://www.idsplus.net/wp-content/uploads/default-placeholder.png");
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
