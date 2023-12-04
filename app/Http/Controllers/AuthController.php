@@ -22,6 +22,7 @@ class AuthController extends Controller
             'nickname' => 'required|unique:users|min:3|max:50',
             'email' => 'required|unique:users|email|max:50',
             'password' => 'required|min:6|max:12',
+            'image' => 'max:255',
         ]);
 
         return $validator;
@@ -51,7 +52,7 @@ class AuthController extends Controller
                     "surname" => $request->input('surname'),
                     "nickname" => $request->input('nickname'),
                     "email" => $request->input('email'),
-                    "password" => bcrypt($request->input('password')),
+                    "password" => bcrypt($request->input('password'))
                 ]
             );
 
@@ -82,27 +83,74 @@ class AuthController extends Controller
 
     //Login
     public function login (Request $request){
-        //Validar el email
-        $validator = Validator::make($request->all(), [
-            'email' => 'required | email',
-            'password' => 'required',
-        ]);
+        try {
+            //Validar el email
+            $validator = Validator::make($request->all(), [
+                'email' => 'required | email',
+                'password' => 'required',
+            ]);
 
-        //Recuperar la información
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
 
-        //Validamos si el usuario existe
+            //Recuperar la información
+            $email = $request->input('email');
+            $password = $request->input('password');
 
-        //Validamos la contraseña
+            //Comprobamos y validamos si el usuario existe
+            $user = User::query()->where('email', $email)->first();
+            if (!$user) {
+                throw new Error("Email or password incorrect.");
+            }
 
-        //Creamos el token
+            //Validamos la contraseña
+            if (!Hash::check($password, $user->password)) {
+                throw new Error("Email or password incorrect.");
+            }
+            //Creamos el token
+            $token = $user->createToken('apiToken')->plainTextToken;
 
-        //Devolvemos la información junto con el token
-        return response()->json(
-            [
-                "message" => "Ok"
-            ],
-            Response::HTTP_OK
-        );
+            //Devolvemos la información junto con el token
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "User logged successfully",
+                    "token" => $token,
+                    "data" => $user
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            dd($th);
+
+            if($th->getMessage() === "Email or password incorrect.") {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Email or password incorrect."
+                    ],
+                    Response::HTTP_NOT_FOUND
+                );
+            }
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error user login."
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
     }
 }
 
