@@ -22,7 +22,6 @@ class AuthController extends Controller
             'nickname' => 'required|unique:users|min:3|max:50',
             'email' => 'required|unique:users|email|max:50',
             'password' => 'required|min:6|max:12',
-            'image' => 'max:255',
         ]);
 
         return $validator;
@@ -53,7 +52,6 @@ class AuthController extends Controller
                     "nickname" => $request->input('nickname'),
                     "email" => $request->input('email'),
                     "password" => bcrypt($request->input('password')),
-                    "image" => $request->input('image')
                 ]
             );
 
@@ -82,9 +80,23 @@ class AuthController extends Controller
 
     }
 
-
-
+    //Login
     public function login (Request $request){
+        //Validar el email
+        $validator = Validator::make($request->all(), [
+            'email' => 'required | email',
+            'password' => 'required',
+        ]);
+
+        //Recuperar la información
+
+        //Validamos si el usuario existe
+
+        //Validamos la contraseña
+
+        //Creamos el token
+
+        //Devolvemos la información junto con el token
         return response()->json(
             [
                 "message" => "Ok"
