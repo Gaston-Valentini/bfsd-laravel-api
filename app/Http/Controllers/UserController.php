@@ -112,23 +112,35 @@ class UserController extends Controller
        $userData = $request->all();
        dump($userData);
 
-       // Iterar sobre los datos y actualizar solo los campos que existen en el modelo User
-       foreach ($userData as $key => $value) {
+       if($userData !== []){
+        // Iterar sobre los datos y actualizar solo los campos que existen en el modelo User
+        foreach ($userData as $key => $value) {
         if (property_exists($userUpdate, $key) && $userUpdate->$key !== $value) {
             $userUpdate->$key = $value;
-        }  
+        }
         }
 
         $userUpdate->update($userData);
 
-    return response()->json(
+         return response()->json(
         [
             "success" => true,
             "message" => "Actualizado.",
             "data" => $userUpdate
         ],
         Response::HTTP_OK
-    );
+         );
+       } else {
+        return response()->json(
+            [
+                "success" => true,
+                "message" => "Field empty."
+            ],
+            Response::HTTP_BAD_REQUEST
+        );
+       }
+
+
     } catch (\Throwable $th) {
         Log::error($th->getMessage());
         dd($th);
@@ -136,11 +148,11 @@ class UserController extends Controller
         return response()->json(
             [
                 "success" => false,
-                "message" => "Users don't exist."
+                "message" => "Error in update profile."
             ],
             Response::HTTP_INTERNAL_SERVER_ERROR
         );
-}
+    }
     }
 
     public function deleteUserById (Request $request){
