@@ -9,8 +9,18 @@ use Illuminate\Routing\Controller;
 class UserController extends Controller
 {
     //CRUD USER
+    // Recuperar a todos los usuarios
     public function getAllUsers (Request $request){
-        return response("all users");
+        $users = User::all();
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Get all users.",
+                    "data" => $users
+                ],
+                Response::HTTP_OK
+            );
     }
 
     public function getUserById (Request $request){
