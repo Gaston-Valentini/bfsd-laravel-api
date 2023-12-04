@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
 
@@ -33,6 +34,12 @@ Route::get('/', function (Request $request) {
 //AUTH ROUTES
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+//CRUD USER
+Route::get('/user', [UserController::class, 'getAllUsers']);
+Route::get('/user/{id}', [UserController::class, 'getUserById']);
+Route::put('/user/{id}', [UserController::class, 'updateUserById']);
+Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
 
 //CRUD ROOMS
 Route::get('/room', [RoomController::class, 'getAllRooms']);
