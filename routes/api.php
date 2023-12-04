@@ -27,5 +27,18 @@ Route::get('/', function (Request $request) {
     );
 });
 
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/register', [AuthController::class, 'register']);
+//CRUD ROOMS
+Route::get('/room', [RoomController::class, 'getAllRooms']);
+Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
+Route::post('/room', [RoomController::class, 'createRoom']);
+Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
+Route::delete('/room/{id}', [RoomController::class, 'deleteRoomById']);
+
+//CRUD MESSAGES
+Route::get('/messages', [MessageController::class, 'getAllMessages']);
+Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
+Route::post('/createMessage', [MessageController::class, 'createMessage']);
+Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
+Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
