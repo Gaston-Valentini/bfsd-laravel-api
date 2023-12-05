@@ -53,40 +53,58 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 
 # 💡Endpoints
-<!-- TODO -->
 <details>
-<summary><h4>/user</h4></summary>
-
-<h5> 1- Crear un usuario, registrarnos </h5>
-- Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
-
-        http
-        POST http://127.0.0.1:8000/api/register
-        
-        
-        json
-        {
-            "name": "Marta",
-            "surname": "Guillem Olmos",
-            "nickname":"maguol",
-            "email": "martaguillem@gmail.com",
-            "password": " 123456"
-        }
-        
-<h5> 2- Login </h5>
-- Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
+<summary>Click para visualizar</summary>
+<br>
 
 
-        http
-        POST http://127.0.0.1:8000/api/login
+  - USUARIOS
+
+    - 1- Crear un usuario, registrarnos.
+               Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
+
+            POST http://127.0.0.1:8000/api/register
+        body:
+        ``` js
+            {
+               "name": "Zaira",
+               "surname": "Guillem Perez",
+               "nickname":"maguol",
+               "email": "zaira@zaira.com",
+               "password": " 123456"
+            }
+        ```
+    - 2- Login.
+            - Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
+
+            POST http://127.0.0.1:8000/api/login 
+        body:
+        ``` js
+            {
+                "email": "zaira@zaira.com",
+                "password": "123456"
+            }
+        ```
+    - 3- Obtener USER por Id.
+
+            GET http://127.0.0.1:8000/api/user/{id}  
         
-        
-        json
-        {
-     
-            "email": "martaguillem@gmail.com",
-            "password": " 123456"
-        }
+    - 4- Actualizar USER por Id.
+            - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
+
+            PUT http://127.0.0.1:8000/api/user/{id}
+
+  - SuperAdmin
+
+    - 5- ELiminar USER por Id.
+
+            DELETE http://127.0.0.1:8000/api/user/{id}          
+       
+    - 6- Obtener todos los USER`s
+            - Descripción: Al acceder como superAdmin, se obtendra el token con acceso requerido para la obtencion de todos los usuarios.
+
+            GET http://127.0.0.1:8000/api/user
+     ...
 </details>
 
 # ⚙️ Instrucciones de uso
@@ -105,7 +123,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
+4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
 6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
 
