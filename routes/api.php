@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\GameController;
 
 
 /*
@@ -71,6 +72,19 @@ Route::group([
     Route::post('/createMessage', [MessageController::class, 'createMessage']);
     Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
     Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+});
+
+//CRUD GAMES
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/games', [GameController::class, 'getAllGames']);
+    Route::get('/game/{id}', [GameController::class, 'getGameById']);
+    Route::post('/creategame', [GameController::class, 'createGame']);
+    Route::put('/updategame/{id}', [GameController::class, 'updateGameById']);
+    Route::delete('/deletegame/{id}', [GameController::class, 'deleteGameById']);
 });
 
 // ADMIN

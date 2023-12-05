@@ -136,9 +136,13 @@ class GameController extends Controller
     {
         Log::info('Create Game');
         try {
-            $game = $request->input('game');
+            $name = $request->input('name');
+            $description = $request->input('description');
+            $image = $request->input('image');
             $newGame = Game::create([
-                'game' => $game,
+                "name" => $name,
+                "description" => $description,
+                "image" => $image
             ]);
 
             return response()->json(
