@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
+use Error;
 use App\Models\Room;
-use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -124,6 +124,21 @@ class RoomController extends Controller
             Response::HTTP_CREATED
         );
     }
+
+     //Validaciones
+     private function validateDataUser(Request $request)
+     {
+         $validator = Validator::make($request->all(), [
+             'name' => 'min:3|max:50',
+             'surname' => 'min:3|max:50',
+            //  'nickname' => 'unique:users|min:3|max:50',
+             'email' => 'unique:users|email|max:50',
+             'password' => 'min:6|max:12',
+             'image' => 'max:255',
+         ]);
+
+         return $validator;
+     }
 
     public function updateRoomById (Request $request){
         return response("update");
