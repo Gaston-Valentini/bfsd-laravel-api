@@ -55,7 +55,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 <!-- TODO -->
 
 <details>
-<summary><h4>auth</h4></summary>
+<summary><h4>/user</h4></summary>
 
 <h5> 1- Crear un usuario, registrarnos </h5>
 - Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
