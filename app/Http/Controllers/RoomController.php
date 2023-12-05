@@ -63,7 +63,7 @@ class RoomController extends Controller
         }
     }
 
-    //Recuperar una Room por el Id
+    //Recuperar una Sala por el Id
     public function getRoomById ($id){
             try {
                 //Recuperamos el id.
@@ -98,6 +98,7 @@ class RoomController extends Controller
             }
     }
 
+    //Crear una Sala
     public function createRoom (Request $request){
         try {
             //Recuperamos la información del token.
@@ -159,7 +160,8 @@ class RoomController extends Controller
             ]);
 
             return $validator;
-        }
+    }
+
 
     //Actualizar una sala por el Id
      public function updateRoomById (Request $request, $id){

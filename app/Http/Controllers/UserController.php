@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     //Validaciones
      private function validateDataUser(Request $request)
-     {
+        {
          $validator = Validator::make($request->all(), [
              'name' => 'min:3|max:50',
              'surname' => 'min:3|max:50',
