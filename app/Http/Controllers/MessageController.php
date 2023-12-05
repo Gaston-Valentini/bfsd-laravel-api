@@ -6,7 +6,6 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-
 use Symfony\Component\HttpFoundation\Response;
 
 class MessageController extends Controller
