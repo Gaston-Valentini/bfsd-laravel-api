@@ -80,10 +80,10 @@ class MessageController extends Controller
                 );
             }
 
-            $name = $request->input('message');
+            $newMessage = $request->input('message');
 
             if ($request->has('message')) {
-                $messages->message = $name;
+                $messages->message = $newMessage;
             }
 
             $messages->save();
