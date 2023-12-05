@@ -60,11 +60,10 @@ class RoomController extends Controller
                 Response::HTTP_OK
             );
         }
-        }
-
+    }
 
     //Recuperar una Room por el Id
-        public function getRoomById ($id){
+    public function getRoomById ($id){
             try {
                 //Recuperamos el id.
                 $roomId = Room::query()->find($id);
@@ -96,7 +95,7 @@ class RoomController extends Controller
                 );
 
             }
-        }
+    }
 
     public function createRoom (Request $request){
         //1. Recuperamos la información del body.
@@ -130,7 +129,45 @@ class RoomController extends Controller
         return response("update");
     }
 
-    public function deleteRoomById (Request $request){
-        return response("delete room");
-    }
+    //Eliminar una Room
+    public function deleteRoomById (Request $request, $id){
+        try {
+            //Comprobamos que Room existe
+            $roomId = Room::query()->find($id);
+            // print_r($roomId);
+            // Validaciones y respuestas
+            if(!$roomId){
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Room don't exist.",
+                    ],
+                    Response::HTTP_NOT_FOUND
+                );
+            }
+
+            $userId=auth()->id();
+            dd($userId);
+            if($roomId->user_id !==userId){
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "The room does not belong to you.",
+                    ],
+                    Response::HTTP_UNATHORIZED
+                );
+            }
+            //Eliminar
+            $roomDelete=destroy($id);
+            print_r($roomDelete);
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+        return response()->json(
+            [
+                "success" => false,
+                "message" => "Error in delete."
+            ],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
+        }    }
 }
