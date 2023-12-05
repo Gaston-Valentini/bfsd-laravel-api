@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoomController extends Controller
 {
+    //Recuperamos todas las salas
     public function getAllRooms (Request $request){
 
             $room = Room::all();
@@ -30,7 +31,6 @@ class RoomController extends Controller
     public function createRoom (Request $request){
         //1. Recuperamos la información del body.
         $game_id = $request->input('game_id');
-        dd($game_id);
         $name = $request->input('name');
         $image_url = $request->input('image_url');
         $is_active = $request->input('is_active');

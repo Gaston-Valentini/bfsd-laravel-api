@@ -105,7 +105,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
+4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
 6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
 
