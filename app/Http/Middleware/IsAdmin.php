@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsSuperAdmin
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,8 @@ class IsSuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Log::info('Is super admin middleware, user: '.auth()->user()->id);
 
-        if (auth()->user()->role != 'super_admin') {
+        if (auth()->user()->role != 'admin') {
             return response()->json(
                 [
                     "success" => false,
