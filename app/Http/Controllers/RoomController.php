@@ -30,15 +30,6 @@ class RoomController extends Controller
         $roomsActive = Room::where("is_active", true)
                         ->get();
 
-        if(empty($roomsActive)==false){
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "No hay",
-                ],
-                Response::HTTP_OK
-            );
-        } else {
             return response()->json(
                 [
                     "success" => true,
@@ -47,7 +38,6 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
-            }
         }
 
 
