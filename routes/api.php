@@ -35,6 +35,7 @@ Route::get('/', function (Request $request) {
 //AUTH ROUTES
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 //CRUD USER
 Route::group([
@@ -84,6 +85,7 @@ Route::group([
     Route::post('/createGame', [GameController::class, 'createGame']);
     Route::get('/getGameById/{id}', [GameController::class, 'getGameById']);
     Route::post('/updateGame/{id}', [GameController::class, 'updateGame']);
+    Route::delete('/deleteGame/{id}', [GameController::class, 'deleteGame']);
 });
 
 // ADMIN

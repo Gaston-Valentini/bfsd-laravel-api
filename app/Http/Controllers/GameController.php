@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
@@ -99,9 +100,34 @@ class GameController extends Controller
         }
     }
 
+    private function validateDataGame(Request $request)
+     {
+         $validator = Validator::make($request->all(), [
+             'game_id' => 'min:1',
+             'name' => 'min:3|max:50',
+             "description" => 'min:3|max:255',
+             'image_url' => 'max:255',
+         ]);
+
+         return $validator;
+     }
+
     public function updateGame(Request $request, $id)
 {
     try {
+        
+        $validator = $this->validateDataGame($request);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
         $game = Game::find($id);
 
         if (!$game) {
@@ -142,6 +168,59 @@ class GameController extends Controller
             ],
             Response::HTTP_INTERNAL_SERVER_ERROR
         );
+    }
+}
+
+public function deleteGame (Request $request, $id){
+    try {
+        //Comprobamos que Room existe
+        $gameId = Game::query()->find($id);
+
+        // Validaciones y respuestas
+        if(!$gameId){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Game don't exist.",
+                ],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        $userId=auth()->id();
+        if($gameId->user_id !==$userId){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "The game does not belong to you.",
+                    "data"=> $gameId
+                ],
+                Response::HTTP_UNAUTHORIZED
+            );
+        }
+        //Eliminar
+        $gameDeleted = $gameId->delete();
+        print_r($gameDeleted);
+
+        if ($gameDeleted) {
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Game deleted successfully.",
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+    } catch (\Throwable $th) {
+        Log::error($th->getMessage());
+    return response()->json(
+        [
+            "success" => false,
+            "message" => "Error in delete."
+        ],
+        Response::HTTP_INTERNAL_SERVER_ERROR
+    );
     }
 }
 

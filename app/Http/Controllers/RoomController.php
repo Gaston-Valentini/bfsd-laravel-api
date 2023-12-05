@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Log;
 use Error;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Room;
+use Error;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
