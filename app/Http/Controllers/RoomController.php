@@ -134,7 +134,7 @@ class RoomController extends Controller
         try {
             //Comprobamos que Room existe
             $roomId = Room::query()->find($id);
-            // print_r($roomId);
+
             // Validaciones y respuestas
             if(!$roomId){
                 return response()->json(
@@ -147,18 +147,30 @@ class RoomController extends Controller
             }
 
             $userId=auth()->id();
-            if($roomId->user_id !==userId){
+            if($roomId->user_id !==$userId){
                 return response()->json(
                     [
                         "success" => true,
                         "message" => "The room does not belong to you.",
+                        "data"=> $roomId
                     ],
-                    Response::HTTP_UNATHORIZED
+                    Response::HTTP_UNAUTHORIZED
                 );
             }
             //Eliminar
-            $roomDelete=destroy($id);
+            $roomDelete = $roomId->delete();
             print_r($roomDelete);
+
+            if ($roomDelete) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Room deleted successfully.",
+                    ],
+                    Response::HTTP_OK
+                );
+            }
+
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
         return response()->json(
