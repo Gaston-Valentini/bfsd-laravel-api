@@ -65,7 +65,6 @@ class UserController extends Controller
 
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            dd($th);
 
             return response()->json(
                 [
@@ -144,8 +143,6 @@ class UserController extends Controller
 
     } catch (\Throwable $th) {
         Log::error($th->getMessage());
-        dd($th);
-
         return response()->json(
             [
                 "success" => false,
@@ -165,8 +162,6 @@ class UserController extends Controller
 
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-        dd($th);
-
         return response()->json(
             [
                 "success" => false,

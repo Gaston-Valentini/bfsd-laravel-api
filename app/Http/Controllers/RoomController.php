@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Routing\Controller;
@@ -14,14 +15,24 @@ class RoomController extends Controller
 
             $room = Room::all();
 
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "Get rooms successfully",
-                    "data" => $room
-                ],
-                Response::HTTP_OK
-            );
+            if(count($room) == 0){
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Don't have rooms.",
+                    ],
+                    Response::HTTP_OK
+                );
+            } else {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Get rooms successfully",
+                        "data" => $room
+                    ],
+                    Response::HTTP_OK
+                );
+            }
 
     }
 
@@ -52,9 +63,40 @@ class RoomController extends Controller
         }
 
 
-    public function getRoomById (Request $request){
-        return response("by id");
-    }
+    //Recuperar una Room por el Id
+        public function getRoomById ($id){
+            try {
+                //Recuperamos el id.
+                $roomId = Room::query()->find($id);
+
+                //Validamos si el usuario existe.
+                if (!$roomId) {
+                throw new Error("Room don't exist.");
+                }
+
+                //Devolvemos la información del usuario
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Room exist.",
+                        "data" => $roomId
+                    ],
+                    Response::HTTP_OK
+                );
+
+            } catch (\Throwable $th) {
+                Log::error($th->getMessage());
+
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Room don't exist."
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+
+            }
+        }
 
     public function createRoom (Request $request){
         //1. Recuperamos la información del body.
