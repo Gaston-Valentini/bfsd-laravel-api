@@ -8,11 +8,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoomController extends Controller
 {
-    //Recuperamos todas las salas
-    public function getAllRooms (Request $request){
+       //Recuperamos todas las salas
+       public function getAllRooms (Request $request){
 
-            $room = Room::all();
+        $room = Room::all();
 
+        if(count($room) == 0){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Don't have rooms.",
+                ],
+                Response::HTTP_OK
+            );
+        } else {
             return response()->json(
                 [
                     "success" => true,
@@ -21,8 +30,9 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
+        }
 
-    }
+}
 
     public function getRoomById (Request $request, $id){
         return response("by id");
