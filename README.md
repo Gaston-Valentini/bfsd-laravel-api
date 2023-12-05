@@ -39,7 +39,6 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&labelColor=101010)]()  [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white&labelColor=101010)]()   [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white&labelColor=101010)]()
 
 
-</details>
 
 
 # 📉 Diagrama de la base de datos
@@ -54,6 +53,41 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 # 💡Endpoints
 <!-- TODO -->
+
+<details>
+<summary><h4>auth</h4></summary>
+
+<h5> 1- Crear un usuario, registrarnos </h5>
+- Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
+
+        http
+        POST http://127.0.0.1:8000/api/register
+        
+        
+        json
+        {
+            "name": "Marta",
+            "surname": "Guillem Olmos",
+            "nickname":"maguol",
+            "email": "martaguillem@gmail.com",
+            "password": " 123456"
+        }
+        
+<h5> 2- Login </h5>
+- Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
+
+
+        http
+        POST http://127.0.0.1:8000/api/login
+        
+        
+        json
+        {
+     
+            "email": "martaguillem@gmail.com",
+            "password": " 123456"
+        }
+</details>
 
 # ⚙️ Instrucciones de uso
 
@@ -71,7 +105,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
+4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
 6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
 
