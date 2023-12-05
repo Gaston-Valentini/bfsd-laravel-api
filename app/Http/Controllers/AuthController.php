@@ -53,6 +53,7 @@ class AuthController extends Controller
                     "nickname" => $request->input('nickname'),
                     "email" => $request->input('email'),
                     "password" => bcrypt($request->input('password')),
+                    "image" => $request->input('image')
                 ]
             );
 
@@ -81,15 +82,76 @@ class AuthController extends Controller
 
     }
 
-
-
+    //Login
     public function login (Request $request){
-        return response()->json(
-            [
-                "message" => "Ok"
-            ],
-            Response::HTTP_OK
-        );
+        try {
+            //Validar el email
+            $validator = Validator::make($request->all(), [
+                'email' => 'required | email',
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            //Recuperar la información
+            $email = $request->input('email');
+            $password = $request->input('password');
+
+            //Comprobamos y validamos si el usuario existe
+            $user = User::query()->where('email', $email)->first();
+            if (!$user) {
+                throw new Error("Email or password incorrect.");
+            }
+
+            //Validamos la contraseña
+            if (!Hash::check($password, $user->password)) {
+                throw new Error("Email or password incorrect.");
+            }
+            //Creamos el token
+            $token = $user->createToken('apiToken')->plainTextToken;
+
+            //Devolvemos la información junto con el token
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "User logged successfully",
+                    "token" => $token,
+                    "data" => $user
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            dd($th);
+
+            if($th->getMessage() === "Email or password incorrect.") {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Email or password incorrect."
+                    ],
+                    Response::HTTP_NOT_FOUND
+                );
+            }
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error user login."
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
     }
 }
 

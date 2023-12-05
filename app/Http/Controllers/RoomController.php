@@ -22,6 +22,7 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
+
     }
 
     //Recuperamos las salas que estén activas
