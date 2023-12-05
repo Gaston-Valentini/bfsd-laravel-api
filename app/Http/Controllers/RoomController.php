@@ -21,7 +21,6 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
-
     }
 
     public function getRoomById (Request $request){
