@@ -4,8 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\GameController;
 
 
 /*
@@ -34,16 +36,64 @@ Route::get('/', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+//CRUD USER
+Route::group([
+        "middleware" => [
+            "auth:sanctum"
+        ]
+    ], function () {
+    Route::get('/user/{id}', [UserController::class, 'getUserById']);
+    Route::put('/user/{id}', [UserController::class, 'updateUserById']);
+});
+
+
 //CRUD ROOMS
-Route::get('/room', [RoomController::class, 'getAllRooms']);
-Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
-Route::post('/room', [RoomController::class, 'createRoom']);
-Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
-Route::delete('/room/{id}', [RoomController::class, 'deleteRoomById']);
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/room', [RoomController::class, 'getAllRooms']);
+    Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
+    Route::post('/room', [RoomController::class, 'createRoom']);
+    Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
+    Route::delete('/room/{id}', [RoomController::class, 'deleteRoomById']);
+});
+
 
 //CRUD MESSAGES
-Route::get('/messages', [MessageController::class, 'getAllMessages']);
-Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
-Route::post('/createMessage', [MessageController::class, 'createMessage']);
-Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
-Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/messages', [MessageController::class, 'getAllMessages']);
+    Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
+    Route::post('/createMessage', [MessageController::class, 'createMessage']);
+    Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
+    Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+});
+
+//CRUD GAMES
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/games', [GameController::class, 'getAllGames']);
+    Route::get('/game/{id}', [GameController::class, 'getGameById']);
+    Route::post('/creategame', [GameController::class, 'createGame']);
+    Route::put('/updategame/{id}', [GameController::class, 'updateGameById']);
+    Route::delete('/deletegame/{id}', [GameController::class, 'deleteGameById']);
+});
+
+// ADMIN
+Route::group([
+    "middleware" => [
+        "auth:sanctum",
+        "is_admin"
+    ]
+], function () {
+    Route::get('/user', [UserController::class, 'getAllUsers']);
+    Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
+});

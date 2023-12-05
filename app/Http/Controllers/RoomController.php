@@ -23,7 +23,7 @@ class RoomController extends Controller
 
     }
 
-    public function getRoomById (Request $request){
+    public function getRoomById (Request $request, $id){
         return response("by id");
     }
 

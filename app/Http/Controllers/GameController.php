@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class MessageController extends Controller
+class GameController extends Controller
 {
-
-
-    public function getAllMessages(Request $request)
+    public function getAllGames(Request $request)
     {
         try {
-            $messages = Message::query()->get();
+            $games = Game::query()->get();
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Get message successfully",
-                    "data" => $messages
+                    "message" => "Get games successfully",
+                    "data" => $games
                 ],
                 Response::HTTP_OK
             );
@@ -31,7 +29,7 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error gettin messages"
+                    "message" => "Error gettin games"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
@@ -39,16 +37,16 @@ class MessageController extends Controller
     }
 
 
-    public function getMessageById(Request $request, $id)
+    public function getGameById(Request $request, $id)
     {
         try {
-            $messages = Message::find($id)->user_id;
+            $game = Game::find($id)->user_id;
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Get message by user_id",
-                    "data" => $messages
+                    "message" => "Get game by user_id",
+                    "data" => $game
                 ],
                 Response::HTTP_OK
             );
@@ -58,40 +56,40 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error getting user with courses"
+                    "message" => "Error getting game with courses"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
 
-    public function updateMessageById(Request $request, $id)
+    public function updateGameById(Request $request, $id)
     {
         try {
-            $messages = Message::query()->find($id);
+            $game = Game::query()->find($id);
 
-            if (!$messages) {
+            if (!$game) {
                 return response()->json(
                     [
                         "success" => true,
-                        "message" => "Message doesnt exists"
+                        "message" => "Game doesnt exists"
                     ],
                     Response::HTTP_BAD_REQUEST
                 );
             }
 
-            $name = $request->input('message');
+            $name = $request->input('game');
 
-            if ($request->has('message')) {
-                $messages->message = $name;
+            if ($request->has('game')) {
+                $game->message = $name;
             }
 
-            $messages->save();
+            $game->save();
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Message updated"
+                    "message" => "Game updated"
                 ],
                 Response::HTTP_OK
             );
@@ -101,23 +99,23 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error updating message"
+                    "message" => "Error updating game"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
 
-    public function deleteMessageById(Request $request, $id)
+    public function deleteGameById(Request $request, $id)
     {
         try {
-            $deleteMessage = Message::destroy($id);
+            $deleteGame = Game::destroy($id);
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Message deleted",
-                    "data" => $deleteMessage
+                    "message" => "Game deleted",
+                    "data" => $deleteGame
                 ],
                 Response::HTTP_OK
             );
@@ -127,27 +125,31 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error deleting message by id"
+                    "message" => "Error deleting game by id"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
 
-    public function createMessage(Request $request)
+    public function createGame(Request $request)
     {
-        Log::info('Create Message');
+        Log::info('Create Game');
         try {
-            $messages = $request->input('message');
-            $newMessage = Message::create([
-                'message' => $messages,
+            $name = $request->input('name');
+            $description = $request->input('description');
+            $image = $request->input('image');
+            $newGame = Game::create([
+                "name" => $name,
+                "description" => $description,
+                "image" => $image
             ]);
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Message created",
-                    "data" => $newMessage
+                    "message" => "Game created",
+                    "data" => $newGame
                 ],
                 Response::HTTP_CREATED
             );
@@ -157,13 +159,13 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error creating message"
+                    "message" => "Error creating game"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
 
 
-        return 'Create Message';
+        return 'Create Game';
     }
 }
