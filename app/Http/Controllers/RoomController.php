@@ -33,6 +33,31 @@ class RoomController extends Controller
         }
 
 }
+   //Recuperamos las salas que estén activas
+   public function getRoomsActive (Request $request){
+
+    $roomsActive = Room::where("is_active", true)
+                    ->get();
+
+    if(count($roomsActive) == 0){
+        return response()->json(
+            [
+                "success" => true,
+                "message" => "Currently there are no rooms that are active.",
+            ],
+            Response::HTTP_OK
+        );
+    } else{
+        return response()->json(
+            [
+                "success" => true,
+                "message" => "Get all rooms active.",
+                "data" => $roomsActive
+            ],
+            Response::HTTP_OK
+        );
+    }
+}
 
     public function getRoomById (Request $request, $id){
         return response("by id");
