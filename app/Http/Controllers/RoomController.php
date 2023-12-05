@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoomController extends Controller
 {
+    //Recuperamos todas las salas
     public function getAllRooms (Request $request){
 
             $room = Room::all();
@@ -20,7 +21,6 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
-
     }
 
     public function getRoomById (Request $request, $id){
