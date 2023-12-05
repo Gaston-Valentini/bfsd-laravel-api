@@ -41,10 +41,8 @@ Route::group([
             "auth:sanctum"
         ]
     ], function () {
-    Route::get('/user', [UserController::class, 'getAllUsers']);
     Route::get('/user/{id}', [UserController::class, 'getUserById']);
     Route::put('/user/{id}', [UserController::class, 'updateUserById']);
-    Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
 });
 
 
@@ -73,4 +71,15 @@ Route::group([
     Route::post('/createMessage', [MessageController::class, 'createMessage']);
     Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
     Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+});
+
+// ADMIN
+Route::group([
+    "middleware" => [
+        "auth:sanctum",
+        "is_admin"
+    ]
+], function () {
+    Route::get('/user', [UserController::class, 'getAllUsers']);
+    Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
 });
