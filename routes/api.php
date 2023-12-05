@@ -36,21 +36,41 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 //CRUD USER
-Route::get('/user', [UserController::class, 'getAllUsers']);
-Route::get('/user/{id}', [UserController::class, 'getUserById']);
-Route::put('/user/{id}', [UserController::class, 'updateUserById']);
-Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
+Route::group([
+        "middleware" => [
+            "auth:sanctum"
+        ]
+    ], function () {
+    Route::get('/user', [UserController::class, 'getAllUsers']);
+    Route::get('/user/{id}', [UserController::class, 'getUserById']);
+    Route::put('/user/{id}', [UserController::class, 'updateUserById']);
+    Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
+});
+
 
 //CRUD ROOMS
-Route::get('/room', [RoomController::class, 'getAllRooms']);
-Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
-Route::post('/room', [RoomController::class, 'createRoom']);
-Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
-Route::delete('/room/{id}', [RoomController::class, 'deleteRoomById']);
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/room', [RoomController::class, 'getAllRooms']);
+    Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
+    Route::post('/room', [RoomController::class, 'createRoom']);
+    Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
+    Route::delete('/room/{id}', [RoomController::class, 'deleteRoomById']);
+});
+
 
 //CRUD MESSAGES
-Route::get('/messages', [MessageController::class, 'getAllMessages']);
-Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
-Route::post('/createMessage', [MessageController::class, 'createMessage']);
-Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
-Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::get('/messages', [MessageController::class, 'getAllMessages']);
+    Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
+    Route::post('/createMessage', [MessageController::class, 'createMessage']);
+    Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
+    Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+});
