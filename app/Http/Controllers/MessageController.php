@@ -140,11 +140,11 @@ class MessageController extends Controller
         try {
             $userId=auth()->id();
             $roomId = $request->input('room_id');
-            $messages = $request->input('message');
+            $message = $request->input('message');
             $newMessage = Message::create([
                 "user_id" => $userId,
                 "room_id" => $roomId,
-                "message" => $messages
+                "message" => $message
             ]);
 
             return response()->json(
