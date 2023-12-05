@@ -145,4 +145,57 @@ class GameController extends Controller
     }
 }
 
+public function deleteGame (Request $request, $id){
+    try {
+        //Comprobamos que Room existe
+        $gameId = Game::query()->find($id);
+
+        // Validaciones y respuestas
+        if(!$gameId){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Game don't exist.",
+                ],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        $userId=auth()->id();
+        if($gameId->user_id !==$userId){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "The game does not belong to you.",
+                    "data"=> $gameId
+                ],
+                Response::HTTP_UNAUTHORIZED
+            );
+        }
+        //Eliminar
+        $gameDeleted = $gameId->delete();
+        print_r($gameDeleted);
+
+        if ($gameDeleted) {
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Game deleted successfully.",
+                ],
+                Response::HTTP_OK
+            );
+        }
+
+    } catch (\Throwable $th) {
+        Log::error($th->getMessage());
+    return response()->json(
+        [
+            "success" => false,
+            "message" => "Error in delete."
+        ],
+        Response::HTTP_INTERNAL_SERVER_ERROR
+    );
+    }
+}
+
 }
