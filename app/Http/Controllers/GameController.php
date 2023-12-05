@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
@@ -99,9 +100,34 @@ class GameController extends Controller
         }
     }
 
+    private function validateDataGame(Request $request)
+     {
+         $validator = Validator::make($request->all(), [
+             'game_id' => 'min:1',
+             'name' => 'min:3|max:50',
+             "description" => 'min:3|max:255',
+             'image_url' => 'max:255',
+         ]);
+
+         return $validator;
+     }
+
     public function updateGame(Request $request, $id)
 {
     try {
+        
+        $validator = $this->validateDataGame($request);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
         $game = Game::find($id);
 
         if (!$game) {

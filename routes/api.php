@@ -35,6 +35,7 @@ Route::get('/', function (Request $request) {
 //AUTH ROUTES
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 //CRUD USER
 Route::group([
