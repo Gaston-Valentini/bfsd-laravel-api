@@ -93,7 +93,7 @@ class GameController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error getting game with courses"
+                    "message" => "Error getting game"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
