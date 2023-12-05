@@ -70,7 +70,6 @@ class AuthController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            dd($th);
             return response()->json(
                 [
                     "success" => false,
@@ -130,7 +129,6 @@ class AuthController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-            dd($th);
 
             if($th->getMessage() === "Email or password incorrect.") {
                 return response()->json(
