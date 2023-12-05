@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references("id")->on("users");
+            $table->foreign('user_id')->references("id")->on("users")->constrained()->onDelete('cascade');
             $table->string('name', 50);
             $table->string('description', 500);
             $table->string('image', 255)->default("https://www.idsplus.net/wp-content/uploads/default-placeholder.png");

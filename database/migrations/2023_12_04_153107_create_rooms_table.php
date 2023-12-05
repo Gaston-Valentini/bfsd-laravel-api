@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('game_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('game_id')->references('id')->on('games');
+            $table->foreign('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->foreign('game_id')->references('id')->on('games')->constrained()->onDelete('cascade');
             $table->string('name',50);
             $table->string('image_url', 255)->default("https://www.idsplus.net/wp-content/uploads/default-placeholder.png");
             $table->boolean('is_active')->default(true);

@@ -159,8 +159,9 @@ class UserController extends Controller
     public function deleteUserById (Request $request, $id){
         try {
 
-            $userDelete = User::find($id);
+            $userDelete = User::destroy($id);
             dump($userDelete);
+
 
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
