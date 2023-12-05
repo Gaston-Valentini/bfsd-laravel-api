@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +22,37 @@ class RoomController extends Controller
                 ],
                 Response::HTTP_OK
             );
+
     }
 
-    public function getRoomById (Request $request, $id){
+    //Recuperamos las salas que estén activas
+    public function getRoomsActive (Request $request){
+
+        $roomsActive = Room::where("is_active", true)
+                        ->get();
+
+        if(count($roomsActive) == 0){
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Currently there are no rooms that are active.",
+                ],
+                Response::HTTP_OK
+            );
+        } else{
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Get all rooms active.",
+                    "data" => $roomsActive
+                ],
+                Response::HTTP_OK
+            );
+        }
+        }
+
+
+    public function getRoomById (Request $request){
         return response("by id");
     }
 

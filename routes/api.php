@@ -43,6 +43,7 @@ Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
 
 //CRUD ROOMS
 Route::get('/room', [RoomController::class, 'getAllRooms']);
+Route::get('/room/is_active', [RoomController::class, 'getRoomsActive']);
 Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
 Route::post('/room', [RoomController::class, 'createRoom']);
 Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
