@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use Error;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Room;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -126,22 +127,88 @@ class RoomController extends Controller
     }
 
      //Validaciones
-     private function validateDataUser(Request $request)
+     private function validateDataRoom(Request $request)
      {
          $validator = Validator::make($request->all(), [
+             'game_id' => 'min:1',
              'name' => 'min:3|max:50',
-             'surname' => 'min:3|max:50',
-            //  'nickname' => 'unique:users|min:3|max:50',
-             'email' => 'unique:users|email|max:50',
-             'password' => 'min:6|max:12',
-             'image' => 'max:255',
+             'image_url' => 'max:255',
          ]);
 
          return $validator;
      }
 
-    public function updateRoomById (Request $request){
-        return response("update");
+    public function updateRoomById (Request $request, $id){
+        try {
+            //Validar la información
+            $validator = $this->validateDataRoom($request);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+            //Recuperamos el id.
+            $roomUpdate = Room::find($id);
+
+            //Validamos si el id de usuario existe.
+            if (!$roomUpdate) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Room don't exist."
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            // Obtener todos los datos enviados por el usuario
+            $roomData = $request->all();
+
+            if($roomData !== []){
+             foreach ($roomData as $key => $value) {
+             if (property_exists($roomUpdate, $key) && $roomUpdate->$key !== $value) {
+                 $roomUpdate->$key = $value;
+             }
+             }
+
+             $roomUpdate->update($roomData);
+
+              return response()->json(
+             [
+                 "success" => true,
+                 "message" => "Actualizado.",
+                 "data" => $roomUpdate
+             ],
+             Response::HTTP_OK
+              );
+
+             } else {
+             return response()->json(
+                 [
+                     "success" => true,
+                     "message" => "Field empty."
+                 ],
+                 Response::HTTP_BAD_REQUEST
+             );
+            }
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+        return response()->json(
+            [
+                "success" => false,
+                "message" => "Error in update room."
+            ],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
+        }
     }
 
     //Eliminar una Room
