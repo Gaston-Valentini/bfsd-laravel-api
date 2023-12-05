@@ -138,9 +138,13 @@ class MessageController extends Controller
     {
         Log::info('Create Message');
         try {
+            $userId=auth()->id();
+            $roomId = $request->input('room_id');
             $messages = $request->input('message');
             $newMessage = Message::create([
-                'message' => $messages,
+                "user_id" => $userId,
+                "room_id" => $roomId,
+                "message" => $messages
             ]);
 
             return response()->json(
@@ -153,7 +157,7 @@ class MessageController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
-
+            dd($th);
             return response()->json(
                 [
                     "success" => false,
