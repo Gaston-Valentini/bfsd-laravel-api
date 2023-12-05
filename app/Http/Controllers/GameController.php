@@ -19,7 +19,7 @@ class GameController extends Controller
             $name = $request->input('name');
             $description = $request->input('description');
             $image = $request->input('image');
-            $newMessage = Game::create([
+            $newGame = Game::create([
                 "user_id" => $userId,
                 'name' => $name,
                 "description" => $description,
@@ -30,7 +30,7 @@ class GameController extends Controller
                 [
                     "success" => true,
                     "message" => "Game created",
-                    "data" => $newMessage
+                    "data" => $newGame
                 ],
                 Response::HTTP_CREATED
             );

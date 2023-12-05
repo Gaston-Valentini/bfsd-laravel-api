@@ -12,6 +12,7 @@ class Room extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'game_id',
         'name',
         'image_url',
