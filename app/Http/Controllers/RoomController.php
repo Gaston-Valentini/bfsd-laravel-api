@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use App\Models\Room;
 use App\Models\User;
+use Error;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
