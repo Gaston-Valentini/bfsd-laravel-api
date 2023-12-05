@@ -99,46 +99,70 @@ class RoomController extends Controller
     }
 
     public function createRoom (Request $request){
-        //1. Recuperamos la información del body.
-        $game_id = $request->input('game_id');
-        dd($game_id);
-        $name = $request->input('name');
-        $image_url = $request->input('image_url');
-        $is_active = $request->input('is_active');
-        //2. Validamos la información
-        //3. Guardo los datos.
-        $newRoom = Room::create(
-        [
-        "game_id"->$game_id,
-        "name"->$name,
-        "image_url"->$image_url,
-        "is_active"->$is_active,
-        ]
-        );
-        //4. Enviamos la respuesta.
-        return response()->json(
-            [
-                "success" => true,
-                "message" => "room created",
-                "data" => $newRoom
-            ],
-            Response::HTTP_CREATED
-        );
+        try {
+            //Recuperamos la información del token.
+            $userId=auth()->id();
+            //Recuperamos la información del body.
+            $game_id = $request->input('game_id');
+            $name = $request->input('name');
+
+            //Validar la información
+            $validator = $this->validateDataRoom($request);
+
+            if ($validator->fails()) {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the validation.",
+                        "error" => $validator->errors()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            //Guardo los datos.
+            $newRoom = Room::create([
+                "user_id" => $userId,
+                "game_id" => $game_id,
+                "name" => $name,
+            ]);
+
+            //Enviamos la respuesta.
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Room created",
+                    "data" => $newRoom
+                ],
+                Response::HTTP_CREATED
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error created Room."
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );        }
+
     }
 
      //Validaciones
      private function validateDataRoom(Request $request)
-     {
-         $validator = Validator::make($request->all(), [
-             'game_id' => 'min:1',
-             'name' => 'min:3|max:50',
-             'image_url' => 'max:255',
-         ]);
+        {
+            $validator = Validator::make($request->all(), [
+                'game_id' => 'min:1',
+                'name' => 'min:3|max:50',
+                'image_url' => 'max:255',
+                'is_active' => 'boolean',
+            ]);
 
-         return $validator;
-     }
+            return $validator;
+        }
 
-    public function updateRoomById (Request $request, $id){
+    //Actualizar una sala por el Id
+     public function updateRoomById (Request $request, $id){
         try {
             //Validar la información
             $validator = $this->validateDataRoom($request);
@@ -211,7 +235,7 @@ class RoomController extends Controller
         }
     }
 
-    //Eliminar una Room
+    //Eliminar una Sala
     public function deleteRoomById (Request $request, $id){
         try {
             //Comprobamos que Room existe

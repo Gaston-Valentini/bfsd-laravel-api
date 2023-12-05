@@ -78,81 +78,82 @@ class UserController extends Controller
 
     //Actualizar la información de un usuario por el Id.
     public function updateUserById (Request $request, $id){
-    try {
-        //Validar la información
-        $validator = $this->validateDataUser($request);
+        try {
+            //Validar la información
+            $validator = $this->validateDataUser($request);
 
-        if ($validator->fails()) {
-        return response()->json(
+            if ($validator->fails()) {
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error in the validation.",
+                    "error" => $validator->errors()
+                ],
+                Response::HTTP_BAD_REQUEST
+            );
+            }
+
+            //Recuperamos el id.
+            $userUpdate = User::query()->find($id);
+
+            //Validamos si el id de usuario existe.
+            if (!$userUpdate) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "User don't exist."
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+        // Obtener todos los datos enviados por el usuario
+        $userData = $request->all();
+        dump($userData);
+
+        if($userData !== []){
+            foreach ($userData as $key => $value) {
+            if (property_exists($userUpdate, $key) && $userUpdate->$key !== $value) {
+                $userUpdate->$key = $value;
+            }
+            }
+
+            $userUpdate->update($userData);
+
+            return response()->json(
             [
-                "success" => false,
-                "message" => "Error in the validation.",
-                "error" => $validator->errors()
+                "success" => true,
+                "message" => "Actualizado.",
+                "data" => $userUpdate
             ],
-            Response::HTTP_BAD_REQUEST
-        );
-        }
+            Response::HTTP_OK
+            );
 
-        //Recuperamos el id.
-        $userUpdate = User::query()->find($id);
-
-        //Validamos si el id de usuario existe.
-        if (!$userUpdate) {
+            } else {
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "User don't exist."
+                    "message" => "Field empty."
                 ],
                 Response::HTTP_BAD_REQUEST
             );
         }
 
-       // Obtener todos los datos enviados por el usuario
-       $userData = $request->all();
-       dump($userData);
 
-       if($userData !== []){
-        foreach ($userData as $key => $value) {
-        if (property_exists($userUpdate, $key) && $userUpdate->$key !== $value) {
-            $userUpdate->$key = $value;
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error in update user."
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
         }
-        }
-
-        $userUpdate->update($userData);
-
-         return response()->json(
-        [
-            "success" => true,
-            "message" => "Actualizado.",
-            "data" => $userUpdate
-        ],
-        Response::HTTP_OK
-         );
-
-        } else {
-        return response()->json(
-            [
-                "success" => true,
-                "message" => "Field empty."
-            ],
-            Response::HTTP_BAD_REQUEST
-        );
-       }
-
-
-    } catch (\Throwable $th) {
-        Log::error($th->getMessage());
-
-        return response()->json(
-            [
-                "success" => false,
-                "message" => "Error in update user."
-            ],
-            Response::HTTP_INTERNAL_SERVER_ERROR
-        );
-    }
     }
 
+    //Eliminar un usuario por el Id
     public function deleteUserById (Request $request, $id){
         try {
 
