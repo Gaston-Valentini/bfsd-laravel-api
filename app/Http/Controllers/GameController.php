@@ -85,7 +85,7 @@ class GameController extends Controller
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Get game by user_id",
+                    "message" => "Get game by id",
                     "data" => $game
                 ],
                 Response::HTTP_OK

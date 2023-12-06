@@ -84,7 +84,7 @@ Route::group([
     Route::get('/games', [GameController::class, 'getAllGames']);
     Route::post('/createGame', [GameController::class, 'createGame']);
     Route::get('/getGameById/{id}', [GameController::class, 'getGameById']);
-    Route::post('/updateGameById/{id}', [GameController::class, 'updateGame']);
+    Route::post('/updateGameById/{id}', [GameController::class, 'updateGameById']);
     Route::delete('/deleteGame/{id}', [GameController::class, 'deleteGame']);
 });
 

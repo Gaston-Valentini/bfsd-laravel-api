@@ -64,7 +64,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             POST http://127.0.0.1:8000/api/register
 
         Body:
-        ``` js
+        ``` JSON
             {
                "name": "Zaira",
                "surname": "Guillem Perez",
@@ -79,7 +79,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             POST http://127.0.0.1:8000/api/login 
 
         Body:
-        ``` js
+        ``` JSON
             {
                 "email": "zaira@zaira.com",
                 "password": "123456"
@@ -124,6 +124,70 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
     
 </details>
 
+<details>
+<summary>/games</summary>
+<br>
+    - 1- Crear un juego.
+            - Descripción: Crear un juego.
+                    POST http://127.0.0.1:8000/api/createGame
+
+                    Auth : User 
+                    Barer token : Token
+
+                Body:
+                ``` JSON
+                    {
+                    "name": "GTA",
+                    "description": "Un videojuego",
+                    "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
+                    }
+
+    - 2- Obtener todos los juegos.
+            - Descripción: Obtener todos los juegos.
+                GET http://127.0.0.1:8000/api/games
+
+                Auth : User 
+                Barer token : Token
+
+    
+                ```
+    - 3- Actualizar un juego por el Id.
+            - Descripción: Actualizar un juego por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+                POST http://127.0.0.1:8000/api/updateGameById/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```
+                 Body:
+                ``` JSON:
+                    {
+                    "name": "GTA",
+                    "description": "El mejor videojuego",
+                    "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
+                    }
+
+     - 4- Recuperar un juego por el Id.
+            - Descripción: Recuperar un juego por el Id.
+                POST http://127.0.0.1:8000/api/getGameById/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```
+                
+    - 5- Eliminar un juego por el Id.
+            - Descripción: Eliminar un juego por el Id.
+                POST http://127.0.0.1:8000/api/deleteGame/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```
+                     
+            
+
+</details>
 # ⚙️ Instrucciones de uso
 
 1. Clona este repositorio en tu máquina local usando el siguiente comando: `git clone [URL del repositorio]`.
@@ -140,7 +204,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
+4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
 6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
 
