@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserSeeder extends Seeder
+class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('users')->insert(
+        $user = DB::table('users')->insert(
             [
                 'name' => Str::random(30),
                 "surname" => Str::random(30),
@@ -33,21 +33,26 @@ class UserSeeder extends Seeder
             ]
         );
 
-        DB::table('games')->insert(
+        $game = DB::table('games')->insert(
             [
+                "user_id" => $user,
                 'name' => Str::random(10),
                 'description' => Str::random(10),
             ]
         );
 
-        DB::table('rooms')->insert(
+        $room = DB::table('rooms')->insert(
             [
+                "user_id" => $user,
+                "game_id" => $game,
                 'name' => Str::random(5),
             ]
         );
 
-        DB::table('message')->insert(
+        DB::table('messages')->insert(
             [
+                "user_id" => $user,
+                "room_id" => $room,
                 'message' => Str::random(100),
             ]
         );
