@@ -169,13 +169,13 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
      - 4- Recuperar un juego por el Id.
             - Descripción: Recuperar un juego por el Id.
-                POST http://127.0.0.1:8000/api/getGameById/{id}
+                GET http://127.0.0.1:8000/api/getGameById/{id}
 
                 Auth : User 
                 Barer token : Token
             
                 ```
-                
+
     - 5- Eliminar un juego por el Id.
             - Descripción: Eliminar un juego por el Id.
                 POST http://127.0.0.1:8000/api/deleteGame/{id}
@@ -185,9 +185,76 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             
                 ```
                      
-            
-
 </details>
+
+<details>
+<summary>/room</summary>
+<br>
+    - 1- Crear una sala.
+            - Descripción: Crear una sala.
+                    POST http://127.0.0.1:8000/api/room
+
+                    Auth : User 
+                    Barer token : Token
+
+                Body:
+                ``` JSON
+                    {
+                    "game_id": 3,
+                    "name":"Escuadrón GTA"
+                    }
+
+    - 2- Obtener todas las salas.
+            - Descripción: Obtener todos las salas.
+                GET http://127.0.0.1:8000/api/room
+
+                Auth : User 
+                Barer token : Token
+
+    
+                ```
+    - 3- Actualizar una sala por el Id.
+            - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+                PUT http://127.0.0.1:8000/api/room/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```
+                 Body:
+                ``` JSON:
+                    {
+                    "name": "Malos GTA"
+                    }
+            NOTA: El usuario puede modificar cualquiera de los siguientes campos y, para realizar la actualización no es necesario introducir todos los campos.
+                
+                'game_id', 'name','image_url','is_active'
+                
+     - 4- Recuperar una sala por el Id.
+            - Descripción: Recuperar una sala por el Id.
+                GET http://127.0.0.1:8000/api/room/{id}
+                Auth : User 
+                Barer token : Token
+            
+                ```
+     - 4- Recuperar todas las salas que sean activas.
+            - Descripción: Recuperar una sala por el Id.
+                GET http://127.0.0.1:8000/api/room/active
+                Auth : User 
+                Barer token : Token
+            
+                ```
+
+    - 5- Eliminar una sala por el Id.
+            - Descripción: Eliminar una sala por el Id.
+                POST http://127.0.0.1:8000/api/room/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```       
+</details>
+
 # ⚙️ Instrucciones de uso
 
 1. Clona este repositorio en tu máquina local usando el siguiente comando: `git clone [URL del repositorio]`.

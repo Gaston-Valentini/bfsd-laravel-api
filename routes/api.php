@@ -55,6 +55,7 @@ Route::group([
     ]
 ], function () {
     Route::get('/room', [RoomController::class, 'getAllRooms']);
+    Route::get('/room/active', [RoomController::class, 'getRoomsActive']);
     Route::get('/room/{id}', [RoomController::class, 'getRoomById']);
     Route::post('/room', [RoomController::class, 'createRoom']);
     Route::put('/room/{id}', [RoomController::class, 'updateRoomById']);
