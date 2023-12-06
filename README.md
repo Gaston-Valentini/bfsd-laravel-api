@@ -10,6 +10,8 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 
 ### 📋 Contenido del Readme
 
+<details> <summary>Accede al contenido </summary>
+
 - <a href="#🚀-descripción"><h4>🚀 Descripción</h4></a>
 - <a href="#🎯-objetivo"><h4>🎯 Objetivo</h4></a>
 - <a href="#🛠️-tecnologías-utilizadas"><h4>🛠️ Tecnologías utilizadas</h4></a>
@@ -20,8 +22,8 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 - <a href="#👏-agradecimientos"><h4>👏 Agradecimientos</h4></a>
 - <a href="#🌟-mejoras"><h4>🌟 Mejoras</h4></a>
 - <a href="#📧-contacto"><h4>📧 Contacto</h4></a>
+</details>
 
-<br></br>
 
 ## 🚀 Descripción
 
@@ -35,21 +37,24 @@ Nuestro objetivo central es crear un backend completo, incluyendo la base de dat
 
 
 ## 🛠️ Tecnologías Utilizadas
-
+<details> <summary>Accede al todas las tecnologías</summary>
 Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
-<div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-    <img src="./database/image/mysql_log.png" width="7%">
-    <img src="./database/image/php_logo.png" width="6%">
-    <img src="./database/image/laravel_logo.png" width="4%">
-    <img src="./database/image/postman_logo.png" width="4%">
-    <img src="./database/image/github_logo.png" width="5%">
-    <img src="./database/image/git_logo.png" width="5%">
-    <img src="./database/image/canva.png" width="5%">
-    <img src="./database/image/trello.png" width="6%">
-</div>
 
+- <img src="./database/image/mysql_log.png" width="10%">: <strong>MySQL</strong>  es un sistema de gestión de bases de datos relacional de código abierto. Es ampliamente utilizado para almacenar y recuperar datos de manera eficiente. MySQL es crucial en el desarrollo de aplicaciones web y software, ya que proporciona una estructura organizada para almacenar información de manera segura.
+<br>
 
+- <img src="./database/image/php_logo.png" width="8%">: <strong>PHP</strong> es un lenguaje de programación del lado del servidor diseñado para el desarrollo web. Se utiliza para crear aplicaciones web dinámicas y es especialmente compatible con MySQL. PHP permite la creación de páginas web interactivas y dinámicas al procesar datos en el servidor antes de enviar la respuesta al cliente.
+<br>
 
+- <img src="./database/image/laravel_logo.png" width="6%">: <strong>Laravel</strong>  es un marco de desarrollo de código abierto para aplicaciones web en PHP. Proporciona una estructura elegante y sintaxis expresiva, facilitando el desarrollo rápido y eficiente de aplicaciones web robustas. Laravel incluye características como el enrutamiento, la gestión de bases de datos y la autenticación, simplificando el desarrollo de aplicaciones complejas.
+<br>
+- <img src="./database/image/postman_logo.png" width="5%">: <strong>Postman</strong>es una plataforma que facilita la creación y prueba de API. Permite a los desarrolladores diseñar, probar y depurar API de manera eficiente. Postman proporciona una interfaz fácil de usar para enviar solicitudes HTTP, visualizar respuestas y automatizar pruebas, mejorando el proceso de desarrollo de software basado en API.
+<br>
+- <img src="./database/image/git_logo.png" width="6%">: <strong>Git</strong> es un sistema de control de versiones distribuido que permite realizar un seguimiento de los cambios en el código fuente durante el desarrollo de software. Facilita la colaboración entre desarrolladores al mantener un historial de versiones y permitir la fusión de cambios de manera eficiente.
+<br>
+- <img src="./database/image/github_logo.png" width="6%">: <strong>GitHub</strong> es una plataforma basada en la nube que utiliza Git para el alojamiento de proyectos y la colaboración. Ofrece funcionalidades adicionales, como problemas, solicitudes de extracción y seguimiento de problemas, que facilitan la gestión de proyectos y la colaboración entre equipos de desarrollo.
+<br>
+- <img src="./database/image/trello.png" width="6%">: <strong>Trello</strong> es una herramienta de gestión de proyectos basada en tableros que utiliza tarjetas y listas para organizar tareas. Es eficaz para la colaboración en equipos, ya que proporciona una visión clara del progreso del proyecto y permite asignar tareas, establecer fechas límite y comentar sobre el progreso.
 </details>
 
 
@@ -150,7 +155,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
         Auth:
 
-            Auth : User 
+            Auth : Admin 
             Barer token : Token
     
 </details>
@@ -569,14 +574,14 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 Entre el punto 1 y 2 del apartado anterior, puede ser que aparezca un error relacionado con la configuración de php. 
 -  Lo solucionaremos de la siguiente forma:
 
-    1- Accede a la carpeta donde esté instalado php en el dispositivo php.
-    2- Accede al archivo php.ini.
-    3- Descomenta la línea:
+    - Accede a la carpeta donde esté instalado php en el dispositivo.
+    - Accede al archivo php.ini.
+    - Descomenta la línea:
 
         extension=pdo_mysql
 
-    4- Guarda los cambios del documento, cierra el documento y el VisualStudio.
-    5- Accede a VisualStudio de nuevo y continua con las <a href="#⚙️-instrucciones-de-uso"><p>instrucciones de uso.</p></a>
+    - Guarda los cambios del documento, cierra el documento y el VisualStudio.
+    - Accede a VisualStudio de nuevo y continua con las instrucciones de uso.
 
 <div align="center">
     <img src="./database/image/php.ini.gif" style="max-width: 70%;" width="500">
@@ -603,9 +608,9 @@ Para trabajar en equipo de forma organizada hemos utilizado las siguientes herra
 - <strong>Ramas en el repositorio</strong> 🪴
 
 - La estructura del respositorio está compuesta por cinco ramas:
-        - <strong>Master</strong>: Rama principal del proyecto.
-        - <strong>Dev</strong>: Rama en la que se combinan los trabajos de las otras ramas y se testean antes de pasarse a producción.
-        - <strong>Toni, Gastón, Marta</strong>: Ramas individuales para cada integrante del equipo.
+    - <strong>Master</strong>: Rama principal del proyecto.
+    - <strong>Dev</strong>: Rama en la que se combinan los trabajos de las otras ramas y se testean antes de pasarse a producción.
+    - <strong>Toni, Gastón, Marta</strong>: Ramas individuales para cada integrante del equipo.
 <div align="center">
     <img src="./database/image/Ramas_Repositorio.gif" style="max-width: 70%;" width="500">
    </div>
