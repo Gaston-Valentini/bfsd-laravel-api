@@ -112,10 +112,12 @@ class MemberController extends Controller
         }
     }
 
-    public function getMemberById($id)
+    public function getMemberById(Request $request)
     {
         try {
-            $member = Member::with(["user", "room"])->find($id)->get();
+
+            $userId = auth()->id();
+            $member = Member::where("user_id", $userId)->get();
 
             return response()->json(
                 [

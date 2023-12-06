@@ -389,7 +389,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 <br>
 
 1. Añadir un miembro a la sala.
-    - Descripción: Añadir un miembro a la sala.
+    - Descripción: Añadir un miembro a la sala, si este la ha creado.
       
              POST http://127.0.0.1:8000/api/members
 
@@ -424,14 +424,15 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 "room_id": 10
                 }
 
-3. Actualizar un mensaje por el Id.
-    - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+3. Recuperar todos los miembros.
+    - Descripción: Recuperar todos los miembros.
 
-            PUT http://127.0.0.1:8000/api/updatemessage/{id}
+            GET http://127.0.0.1:8000/api/members
+
 
         Auth:
 
-             Auth : User 
+             Auth : Admin 
              Barer token : Token
 
         Body:

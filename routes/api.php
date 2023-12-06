@@ -99,6 +99,7 @@ Route::group([
 ], function () {
     Route::get('/user', [UserController::class, 'getAllUsers']);
     Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
+    Route::get('/members', [MemberController::class, 'getAllMembers']);
 });
 
 //MEMBERS
@@ -109,7 +110,6 @@ Route::group([
 ], function () {
     Route::post('/members', [MemberController::class, 'addMember']);
     Route::post('/member', [MemberController::class, 'addUserRoom']);
-    Route::get('/members', [MemberController::class, 'getAllMembers']);
-    Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
+    Route::get('/member', [MemberController::class, 'getMemberById']);
     Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);
 });
