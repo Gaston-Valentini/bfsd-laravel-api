@@ -69,11 +69,11 @@ Route::group([
         "auth:sanctum"
     ]
 ], function () {
-    Route::get('/messages', [MessageController::class, 'getAllMessages']);
-    Route::get('/message/{id}', [MessageController::class, 'getMessageById']);
+    Route::get('/getAllMessages', [MessageController::class, 'getAllMessages']);
+    Route::get('/getMessageById/{id}', [MessageController::class, 'getMessageById']);
     Route::post('/createMessage', [MessageController::class, 'createMessage']);
-    Route::put('/updatemessage/{id}', [MessageController::class, 'updateMessageById']);
-    Route::delete('/deletemessage/{id}', [MessageController::class, 'deleteMessageById']);
+    Route::put('/updateMessageById/{id}', [MessageController::class, 'updateMessageById']);
+    Route::delete('/deleteMessageById/{id}', [MessageController::class, 'deleteMessageById']);
 });
 
 //CRUD GAMES
@@ -82,11 +82,11 @@ Route::group([
         "auth:sanctum"
     ]
 ], function () {
-    Route::get('/games', [GameController::class, 'getAllGames']);
-    Route::post('/createGame', [GameController::class, 'createGame']);
-    Route::get('/getGameById/{id}', [GameController::class, 'getGameById']);
-    Route::post('/updateGameById/{id}', [GameController::class, 'updateGameById']);
-    Route::delete('/deleteGame/{id}', [GameController::class, 'deleteGame']);
+    Route::get('/game', [GameController::class, 'getAllGames']);
+    Route::post('/game', [GameController::class, 'createGame']);
+    Route::get('/game/{id}', [GameController::class, 'getGameById']);
+    Route::put('/game/{id}', [GameController::class, 'updateGameById']);
+    Route::delete('/game/{id}', [GameController::class, 'deleteGame']);
 });
 
 // ADMIN
