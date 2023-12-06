@@ -226,7 +226,7 @@ class MemberController extends Controller
         }
     }
 
-    public function deleteMember(Request $request)
+    public function deleteMemberById(Request $request)
     {
         try {
             $userId = auth()->id();

@@ -473,15 +473,35 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 
 5. Eliminar un miembro.
-    - Descripción: Eliminar una sala por el Id.
+    - Descripción: El creador de la sala puede eliminar un usuario de la misma.
             
-            POST http://127.0.0.1:8000/api/deletemessage/{id}
+            DELETE http://127.0.0.1:8000/api/member
 
 
         Auth:
 
              Auth : User 
              Barer token : Token
+
+        Body:
+
+              JSON:
+                {
+                "user_id":2,
+                "room_id":9
+                }
+
+6. Salir de una sala.
+    - Descripción: Salir de una sala a la que perteneces.
+            
+            DELETE http://127.0.0.1:8000/api/member/{$id}
+
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+
             
       
 </details>
