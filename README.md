@@ -237,7 +237,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 Barer token : Token
             
                 ```
-     - 4- Recuperar todas las salas que sean activas.
+     - 5- Recuperar todas las salas que sean activas.
             - Descripción: Recuperar una sala por el Id.
                 GET http://127.0.0.1:8000/api/room/active
                 Auth : User 
@@ -245,9 +245,66 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             
                 ```
 
-    - 5- Eliminar una sala por el Id.
+    - 6- Eliminar una sala por el Id.
             - Descripción: Eliminar una sala por el Id.
                 POST http://127.0.0.1:8000/api/room/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```       
+</details>
+
+<details>
+<summary>/message</summary>
+<br>
+    - 1- Crear un mensaje.
+            - Descripción: Crear una mensaje.
+                    POST http://127.0.0.1:8000/api/createMessage
+
+                    Auth : User 
+                    Barer token : Token
+
+                Body:
+                ``` JSON
+                    {
+                    "game_id": 3,
+                    "name":"Escuadrón GTA"
+                    }
+
+    - 2- Obtener todos los mensajes.
+            - Descripción: Obtener todos los mensajes.
+                GET http://127.0.0.1:8000/api/messages
+
+                Auth : User 
+                Barer token : Token
+
+    
+                ```
+    - 3- Actualizar un mensaje por el Id.
+            - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+                PUT http://127.0.0.1:8000/api/updatemessage/{id}
+
+                Auth : User 
+                Barer token : Token
+            
+                ```
+                 Body:
+                ``` JSON:
+                    {
+                     "message": "Hola Grupi"
+                    }
+            
+     - 4- Recuperar un mensaje por el Id.
+            - Descripción: Recuperar una sala por el Id.
+                GET http://127.0.0.1:8000/api/message/{id}
+                Auth : User 
+                Barer token : Token
+            
+                ```
+    - 5- Eliminar un mensaje por el Id.
+            - Descripción: Eliminar una sala por el Id.
+                POST http://127.0.0.1:8000/api/deletemessage/{id}
 
                 Auth : User 
                 Barer token : Token

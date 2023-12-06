@@ -42,12 +42,12 @@ class MessageController extends Controller
     public function getMessageById(Request $request, $id)
     {
         try {
-            $messages = Message::find($id)->user_id;
+            $messages = Message::find($id)->get();
 
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Get message by user_id",
+                    "message" => "Get message.",
                     "data" => $messages
                 ],
                 Response::HTTP_OK
