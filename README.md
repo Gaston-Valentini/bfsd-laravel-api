@@ -537,12 +537,25 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 ## ⚠️ Posibles errores
 
+<div style="text-align: center;">
+    <div style="display: inline-block; margin: 3em;">
+        <img src="./database/image/php.ini.gif" alt="Role superAdmin" width="320" height="240">
+    </div>
+</div>
 
 ## 📅 Organización
 Para trabajar en equipo de forma organizada hemos utilizado las siguientes herramientas:
 - Trello 🖇️
 
+<div style="text-align: center;">
+    <div style="display: inline-block; margin: 3em;">
+        <img src="./database/image/Organizacion_Tablon_Trello.gif" alt="Role superAdmin" width="320" height="240">
+    </div>
+</div>
+
 [Acceder a Trello](https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel)
+
+
 
 - Ramas en el repositorio 🪴
 <div align="center">
@@ -559,13 +572,13 @@ Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta
 ## 📧 Contacto
 Podéis contactar con nosotros a través de los siguientes medios de comunicación:
 
-***Gaston Valentini***
-[![Gmail](https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white)](gastonvalentiniruiz@gmail.com) [![GitHub](https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Gaston-Valentini) [![LinkedIn](https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gastonvalentini/)
-
- 
-***Marta Guillem***  
-[![Gmail](https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white)](martaguillem@outlook.es) [![GitHub](https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/martaguillemolmos) [![LinkedIn](https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marta-guillem-olmos-b26b9b293/)
+- ***Gaston Valentini***  
+Contacta conmigo por correo electrónico [gastonvalentiniruiz@gmail.com](mailto:gastonvalentiniruiz@gmail.com). Además, puedes seguirme en [GitHub]((https://github.com/Gaston-Valentini))   | [LinkedIn](https://www.linkedin.com/in/gastonvalentini/)
 
 
-***Antonio Insa*** 
-[![Gmail](https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white)](antonioinsa@tutanota.com) [![GitHub](https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/antonioinsa) [![LinkedIn](https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/antonioinsa/)
+- ***Marta Guillem***  
+Contacta conmigo por correo electrónico [martaguillem@outlook.es](mailto:martaguillem@outlook.es). Además, puedes seguirme en [GitHub]((https://github.com/martaguillemolmos))   | [LinkedIn](https://www.linkedin.com/in/marta-guillem-olmos-b26b9b293/)
+
+
+- ***Antonio insa***  
+Contacta conmigo por correo electrónico [antonioinsa@tutanota.com](mailto:antonioinsa@tutanota.com). Además, puedes seguirme en [GitHub]((https://github.com/antonioinsa))   | [LinkedIn](https://www.linkedin.com/in/antonioinsa/)
