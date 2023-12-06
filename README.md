@@ -534,6 +534,17 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 4. Ejecutamos las migraciones mediante el comando `php artisan migrate`.
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`.
+6. Importar endpoints con Postman.
+    - En la carpeta app/Http/Postman se encuentra el archivo para importar todas las rutas a través de Postman:
+    <div align="center">
+        <img src="./database/image/Acceder_Archivo_Postman.gif" style="max-width: 70%;" width="500">
+    </div>
+    - Por último, importa el documento en Postman:
+    <div align="center">
+        <img src="./database/image/Postman_Import.gif" style="max-width: 70%;" width="500">
+    </div>
+
+
 
 ## ⚠️ Posibles errores
 
