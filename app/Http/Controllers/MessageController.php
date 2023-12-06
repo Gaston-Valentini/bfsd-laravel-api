@@ -47,7 +47,7 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Get message by id",
+                    "message" => "Get message",
                     "data" => $messages
                 ],
                 Response::HTTP_OK
