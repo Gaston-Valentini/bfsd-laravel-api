@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GameController;
 
 
@@ -106,7 +107,8 @@ Route::group([
         "auth:sanctum"
     ]
 ], function () {
-    Route::post('/member', [MemberController::class, 'createMember']);
+    Route::post('/member', [MemberController::class, 'addUserRoom']);
+    Route::post('/member/{id}', [MemberController::class, 'addMember']);
     Route::get('/members', [MemberController::class, 'getAllMembers']);
     Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
     Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);

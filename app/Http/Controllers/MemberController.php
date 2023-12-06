@@ -10,15 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MemberController extends Controller
 {
-    public function createMember(Request $request)
+    public function addUserRoom(Request $request)
     {
         Log::info('Create Member');
         try {
             $userId = auth()->id();
-            $roomId = $request->input('room_id');
+            $room_id = $request->input('room_id');
             $newMember = Member::create([
                 "user_id" => $userId,
-                "room_id" => $roomId
+                "room_id" => $room_id
             ]);
 
             return response()->json(
@@ -41,6 +41,7 @@ class MemberController extends Controller
             );
         }
     }
+    
 
     public function getAllMembers()
     {
