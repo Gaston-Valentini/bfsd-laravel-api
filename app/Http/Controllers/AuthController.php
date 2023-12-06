@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Routing\Controller;
 use Error;
@@ -29,7 +30,8 @@ class AuthController extends Controller
     }
 
     //Registro
-    public function register (Request $request){
+    public function register(Request $request)
+    {
         try {
             //Validar la información
             $validator = $this->validateDataUser($request);
@@ -76,12 +78,13 @@ class AuthController extends Controller
                     "message" => "Error registering user"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
-            );        }
-
+            );
+        }
     }
 
     //Login
-    public function login (Request $request){
+    public function login(Request $request)
+    {
         try {
             //Validar el email
             $validator = Validator::make($request->all(), [
@@ -130,7 +133,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
 
-            if($th->getMessage() === "Email or password incorrect.") {
+            if ($th->getMessage() === "Email or password incorrect.") {
                 return response()->json(
                     [
                         "success" => false,
@@ -148,44 +151,41 @@ class AuthController extends Controller
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
-
     }
 
     //logout
     public function logout(Request $request)
-{
-    try {
-        if ($request->user()) {
-            $request->user()->currentAccessToken()->delete();
+    {
+        try {
+            if ($request->user()) {
+                $request->user()->currentAccessToken()->delete();
 
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "Logout successfully"
-                ],
-                Response::HTTP_OK
-            );
-        } else {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Logout successfully"
+                    ],
+                    Response::HTTP_OK
+                );
+            } else {
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Error in the logout"
+                    ],
+                    Response::HTTP_UNAUTHORIZED
+                );
+            }
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error in the logout"
+                    "message" => "Error al cerrar sesión del usuario."
                 ],
-                Response::HTTP_UNAUTHORIZED
+                Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
-    } catch (\Throwable $th) {
-        Log::error($th->getMessage());
-
-        return response()->json(
-            [
-                "success" => false,
-                "message" => "Error al cerrar sesión del usuario."
-            ],
-            Response::HTTP_INTERNAL_SERVER_ERROR
-        );
     }
 }
-}
-
-?>

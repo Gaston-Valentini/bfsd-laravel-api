@@ -127,7 +127,7 @@ class MessageController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Error deleting message by id"
+                    "message" => "Error deleting message"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
