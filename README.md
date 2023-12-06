@@ -59,14 +59,13 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 <summary>/auth</summary>
 <br>
 
-
-    - 1- Crear un usuario, registro.
-               Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
+1. Crear un usuario, registro.
+    - Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
 
             POST http://127.0.0.1:8000/api/register
 
         Body:
-        ``` js
+             JSON
             {
                "name": "Zaira",
                "surname": "Guillem Perez",
@@ -74,58 +73,275 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                "email": "zaira@zaira.com",
                "password": " 123456"
             }
-        ```
-    - 2- Login.
-            - Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
+        
+2. Login.
+    - Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
 
             POST http://127.0.0.1:8000/api/login 
 
         Body:
-        ``` js
+             JSON
             {
                 "email": "zaira@zaira.com",
                 "password": "123456"
             }
-        ```
+        
     
 </details>
+<details>
 <summary>/usuario</summary>
 <br>
-    - 1- Obtener un usuario por Id.
-        - Descripción: Obtener un usuario por el id, si el id enviado corresponde con el id del token que hemos obtenido con el Login.
-    - 3- Obtener USER por Id.
-            - Descripción: Con el token obtenido al hacer Login, podremos obtener los datos del user al que pertenece ese token.
 
+1. Obtener un usuario por Id.
+    - Descripción: Obtener un usuario por el id, si el id enviado    corresponde con el id del token que hemos obtenido con el Login.
             GET http://127.0.0.1:8000/api/user/{id}  
 
+        Auth:
             Auth : User 
             Barer token : Token
  
         
-    - 2- Actualizar un usuario por Id.
-        - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
-
+2. Actualizar un usuario por Id.
+    - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
             PUT http://127.0.0.1:8000/api/user/{id}
 
+        Auth:
             Auth : User 
             Barer token : Token
 
 
-    - 5- ELiminar USER por Id.
+    - 3- Eliminar un usuario por el Id.
+        - Descripción: Eliminar un usuario por el id.
 
             DELETE http://127.0.0.1:8000/api/user/{id}          
 
+        Auth:
             Auth : Admin
             Barer token : Token
        
-    - 4- Obtener todos los usuarios.
-        - Descripción: Obtener los datos de todos los usuarios.
+4. Obtener todos los usuarios.
+    - Descripción: Obtener los datos de todos los usuarios.
 
             GET http://127.0.0.1:8000/api/user
 
-             Auth : User 
+        Auth:
+            Auth : User 
             Barer token : Token
     
+</details>
+
+<details>
+<summary>/games</summary>
+<br>
+
+1. Crear un juego.
+    - Descripción: Crear un juego.
+            POST http://127.0.0.1:8000/api/createGame
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+
+        Body:
+            JSON
+                {
+                "name": "GTA",
+                "description": "Un videojuego",
+                "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
+                }
+
+2. Obtener todos los juegos.
+    - Descripción: Obtener todos los juegos.
+            GET http://127.0.0.1:8000/api/games
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+
+3. Actualizar un juego por el Id.
+    - Descripción: Actualizar un juego por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+            POST http://127.0.0.1:8000/api/updateGameById/{id}
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+        Body:
+            JSON:
+            {
+            "name": "GTA",
+            "description": "El mejor videojuego",
+            "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
+            }
+
+4. Recuperar un juego por el Id.
+    - Descripción: Recuperar un juego por el Id.
+            GET http://127.0.0.1:8000/api/getGameById/{id}
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+
+5. Eliminar un juego por el Id.
+    - Descripción: Eliminar un juego por el Id.
+            POST http://127.0.0.1:8000/api/deleteGame/{id}
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+                     
+</details>
+
+<details>
+<summary>/room</summary>
+<br>
+
+1. Crear una sala.
+    - Descripción: Crear una sala.
+            POST http://127.0.0.1:8000/api/room
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+
+        Body:
+            JSON
+            {
+            "game_id": 3,
+            "name":"Escuadrón GTA"
+            }
+
+2. Obtener todas las salas.
+    - Descripción: Obtener todos las salas.
+            GET http://127.0.0.1:8000/api/room
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+
+
+3. Actualizar una sala por el Id.
+    - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+            PUT http://127.0.0.1:8000/api/room/{id}
+
+        Auth:    
+            Auth : User 
+            Barer token : Token
+            
+        
+        Body:
+            JSON:
+                {
+                "name": "Malos GTA"
+                }
+
+            NOTA: El usuario puede modificar cualquiera de los siguientes campos y, para realizar la actualización no es necesario introducir todos los campos.
+                
+                'game_id', 'name','image_url','is_active'
+                
+4. Recuperar una sala por el Id.
+    - Descripción: Recuperar una sala por el Id.
+                
+            GET http://127.0.0.1:8000/api/room/{id}
+        
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+     
+5. Recuperar todas las salas que sean activas.
+    - Descripción: Recuperar una sala por el Id.
+                
+            GET http://127.0.0.1:8000/api/room/active
+                
+        Auth:        
+            Auth : User 
+            Barer token : Token
+            
+            
+
+6. Eliminar una sala por el Id.
+    - Descripción: Eliminar una sala por el Id.
+                
+            POST http://127.0.0.1:8000/api/room/{id}
+        
+        Auth:   
+            Auth : User 
+            Barer token : Token
+            
+               
+</details>
+
+<details>
+<summary>/message</summary>
+<br>
+
+1. Crear un mensaje.
+    - Descripción: Crear una mensaje.
+      
+             POST http://127.0.0.1:8000/api/createMessage
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+
+        Body:
+
+              JSON
+                {
+                "game_id": 3,
+                "name":"Escuadrón GTA"
+                }
+
+2. Obtener todos los mensajes.
+    - Descripción: Obtener todos los mensajes.
+
+            GET http://127.0.0.1:8000/api/messages
+
+        Auth:   
+             Auth : User 
+             Barer token : Token
+
+3. Actualizar un mensaje por el Id.
+    - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+
+            PUT http://127.0.0.1:8000/api/updatemessage/{id}
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+     
+        Body:
+
+            JSON:
+                {
+                "message": "Hola Grupi"
+                }
+            
+4. Recuperar un mensaje por el Id.
+    - Descripción: Recuperar una sala por el Id.
+
+            GET http://127.0.0.1:8000/api/message/{id}
+        
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+            
+5. Eliminar un mensaje por el Id.
+    - Descripción: Eliminar una sala por el Id.
+            
+            POST http://127.0.0.1:8000/api/deletemessage/{id}
+
+        Auth:
+            Auth : User 
+            Barer token : Token
+            
+      
 </details>
 
 ## ⚙️ Instrucciones de uso
@@ -144,7 +360,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migration` 
+4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
 5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
 6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
 
