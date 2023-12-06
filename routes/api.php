@@ -99,3 +99,15 @@ Route::group([
     Route::get('/user', [UserController::class, 'getAllUsers']);
     Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
 });
+
+//MEMBERS
+Route::group([
+    "middleware" => [
+        "auth:sanctum"
+    ]
+], function () {
+    Route::post('/member', [MemberController::class, 'createMember']);
+    Route::get('/members', [MemberController::class, 'getAllMembers']);
+    Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
+    Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);
+});
