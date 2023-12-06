@@ -107,8 +107,8 @@ Route::group([
         "auth:sanctum"
     ]
 ], function () {
-    Route::post('/member', [MemberController::class, 'addUserRoom']);
     Route::post('/members', [MemberController::class, 'addMember']);
+    Route::post('/member', [MemberController::class, 'addUserRoom']);
     Route::get('/members', [MemberController::class, 'getAllMembers']);
     Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
     Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);

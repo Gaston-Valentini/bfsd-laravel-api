@@ -153,7 +153,6 @@ class MemberController extends Controller
                 );
             }
             $memberDeleted = $memberId->delete();
-            print_r($memberDeleted);
 
             if ($memberDeleted) {
                 return response()->json(
