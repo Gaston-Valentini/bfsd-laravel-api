@@ -38,6 +38,11 @@ class Room extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(Member::class);
+    }
 }
 
 
