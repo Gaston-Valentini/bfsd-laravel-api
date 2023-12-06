@@ -9,6 +9,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\MemberController;
 
 
 /*
