@@ -904,7 +904,7 @@
 					"response": []
 				},
 				{
-					"name": "Recuperar todos los miembros de la sala",
+					"name": "Recuperar todos los miembros de todas las sala",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1032,6 +1032,98 @@
 								"api",
 								"member",
 								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todos los usuarios de una sala",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/member/room",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"member",
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar todos los usuarios que pertenecen a una sala",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_id\":9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/member/room",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"member",
+								"room"
 							]
 						}
 					},

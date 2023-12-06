@@ -149,7 +149,7 @@ class MemberController extends Controller
                 return response()->json(
                     [
                         "success" => true,
-                        "message" => "Currently there are members in this room.",
+                        "message" => "Currently there aren't members in this room.",
                     ],
                     Response::HTTP_OK
                 );
@@ -163,7 +163,7 @@ class MemberController extends Controller
                     Response::HTTP_OK
                 );
             }
-        
+
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
 
@@ -177,7 +177,7 @@ class MemberController extends Controller
         }
     }
 
-    public function deleteMemberById($id)
+    public function exitRoomById($id)
     {
         try {
             $memberId = Member::query()->find($id);
@@ -209,6 +209,50 @@ class MemberController extends Controller
                     [
                         "success" => true,
                         "message" => "Member deleted successfully"
+                    ],
+                    Response::HTTP_OK
+                );
+            }
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error deleting member"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function deleteMember(Request $request)
+    {
+        try {
+            $userId = auth()->id();
+            $userCreateRoom = Room::where("user_id", $userId);
+
+            if(!$userCreateRoom){
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Don't have auth"
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+            }
+
+            $user_id = $request->input('user_id');
+            $room_id = $request->input('room_id');
+
+            $memberDeleted = $memberId->delete();
+
+            if ($memberDeleted) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Member deleted successfully",
+                        "data" => $memberDeleted
                     ],
                     Response::HTTP_OK
                 );

@@ -454,9 +454,9 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
              Barer token : Token
 
 5. Recuperar todos los miembros de una sala.
-    - Descripción: Eliminar una sala por el Id.
+    - Descripción: Recuperar todos los miembros que forman parte de una sala.
             
-            POST http://127.0.0.1:8000/api/deletemessage/{id}
+            GET http://127.0.0.1:8000/api/member/room
 
 
         Auth:
@@ -464,7 +464,15 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
              Auth : User 
              Barer token : Token
 
-5. Eliminar un mensaje por el Id.
+        Body:
+
+              JSON:
+                {
+                "room_id":9
+                }
+
+
+5. Eliminar un miembro.
     - Descripción: Eliminar una sala por el Id.
             
             POST http://127.0.0.1:8000/api/deletemessage/{id}
