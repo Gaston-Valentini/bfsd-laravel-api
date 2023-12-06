@@ -424,15 +424,15 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 "room_id": 10
                 }
 
-3. Recuperar todos los miembros.
-    - Descripción: Recuperar todos los miembros.
+3. Recuperar todas las salas en las que pertenece el usuario.
+    - Descripción: Recuperar todas las salas a las que pertenece el usuario. Para ello, recuperamos su id del token.
 
-            GET http://127.0.0.1:8000/api/members
+            GET http://127.0.0.1:8000/api/member
 
 
         Auth:
 
-             Auth : Admin 
+             Auth : User 
              Barer token : Token
 
         Body:
@@ -443,16 +443,27 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 }
 
             
-4. Recuperar un mensaje por el Id.
-    - Descripción: Recuperar una sala por el Id.
+4. Recuperar todos los miembros.
+    - Descripción: Recuperar todos los usuarios y las salas a las que pertenece.
 
-            GET http://127.0.0.1:8000/api/message/{id}
+            GET http://127.0.0.1:8000/api/members
         
+        Auth:
+
+             Auth : Admin 
+             Barer token : Token
+
+5. Recuperar todos los miembros de una sala.
+    - Descripción: Eliminar una sala por el Id.
+            
+            POST http://127.0.0.1:8000/api/deletemessage/{id}
+
+
         Auth:
 
              Auth : User 
              Barer token : Token
-            
+
 5. Eliminar un mensaje por el Id.
     - Descripción: Eliminar una sala por el Id.
             

@@ -111,5 +111,7 @@ Route::group([
     Route::post('/members', [MemberController::class, 'addMember']);
     Route::post('/member', [MemberController::class, 'addUserRoom']);
     Route::get('/member', [MemberController::class, 'getMemberById']);
+    Route::get('/member/room', [MemberController::class, 'membersRoom']);
     Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);
+
 });

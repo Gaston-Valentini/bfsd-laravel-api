@@ -56,7 +56,7 @@ class MemberController extends Controller
                     Response::HTTP_INTERNAL_SERVER_ERROR
                 );
             }
-            //Recuperamos la infor del body
+
             $user_id = $request->input('user_id');
             $room_id = $request->input('room_id');
 
@@ -134,6 +134,43 @@ class MemberController extends Controller
                 [
                     "success" => false,
                     "message" => "Error getting member"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function membersRoom(Request $request)
+    {
+        try {
+            $room_id= $request->input('room_id');
+            $member = Member::where('room_id', $room_id)->get();
+            if(count($member) == 0){
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Currently there are members in this room.",
+                    ],
+                    Response::HTTP_OK
+                );
+            } else{
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Get all users form this room.",
+                        "data" => $member
+                    ],
+                    Response::HTTP_OK
+                );
+            }
+        
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error getting members"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
