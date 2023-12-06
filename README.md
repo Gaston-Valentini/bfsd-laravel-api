@@ -1,4 +1,4 @@
-# README - 🕹️ Aplicación web LFG 🕹️
+# <h1 align="center">README - 🕹️ Aplicación web LFG 🕹️</h1>
 __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Academy </p>__
 
 <p>
@@ -48,12 +48,16 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 - <img src="./database/image/laravel_logo.png" width="6%">: <strong>Laravel</strong>  es un marco de desarrollo de código abierto para aplicaciones web en PHP. Proporciona una estructura elegante y sintaxis expresiva, facilitando el desarrollo rápido y eficiente de aplicaciones web robustas. Laravel incluye características como el enrutamiento, la gestión de bases de datos y la autenticación, simplificando el desarrollo de aplicaciones complejas.
 <br>
-- <img src="./database/image/postman_logo.png" width="5%">: <strong>Postman</strong>es una plataforma que facilita la creación y prueba de API. Permite a los desarrolladores diseñar, probar y depurar API de manera eficiente. Postman proporciona una interfaz fácil de usar para enviar solicitudes HTTP, visualizar respuestas y automatizar pruebas, mejorando el proceso de desarrollo de software basado en API.
+
+- <img src="./database/image/postman_logo.png" width="5%">: <strong>Postman</strong> es una plataforma que facilita la creación y prueba de API. Permite a los desarrolladores diseñar, probar y depurar API de manera eficiente. Postman proporciona una interfaz fácil de usar para enviar solicitudes HTTP, visualizar respuestas y automatizar pruebas, mejorando el proceso de desarrollo de software basado en API.
 <br>
+
 - <img src="./database/image/git_logo.png" width="6%">: <strong>Git</strong> es un sistema de control de versiones distribuido que permite realizar un seguimiento de los cambios en el código fuente durante el desarrollo de software. Facilita la colaboración entre desarrolladores al mantener un historial de versiones y permitir la fusión de cambios de manera eficiente.
 <br>
+
 - <img src="./database/image/github_logo.png" width="6%">: <strong>GitHub</strong> es una plataforma basada en la nube que utiliza Git para el alojamiento de proyectos y la colaboración. Ofrece funcionalidades adicionales, como problemas, solicitudes de extracción y seguimiento de problemas, que facilitan la gestión de proyectos y la colaboración entre equipos de desarrollo.
 <br>
+
 - <img src="./database/image/trello.png" width="6%">: <strong>Trello</strong> es una herramienta de gestión de proyectos basada en tableros que utiliza tarjetas y listas para organizar tareas. Es eficaz para la colaboración en equipos, ya que proporciona una visión clara del progreso del proyecto y permite asignar tareas, establecer fechas límite y comentar sobre el progreso.
 </details>
 
