@@ -38,8 +38,16 @@ Nuestro objetivo central es crear un backend completo, incluyendo la base de dat
 ## 🛠️ Tecnologías Utilizadas
 
 Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
-
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white&labelColor=101010)]()  [![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white&labelColor=101010)]()   [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white&labelColor=101010)]() ![Postman](https://img.shields.io/badge/-Postman-000?&logo=Postman) ![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)&nbsp;
+<div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+    <img src="./database/image/mysql_log.png" width="7%">
+    <img src="./database/image/php_logo.png" width="6%">
+    <img src="./database/image/laravel_logo.png" width="4%">
+    <img src="./database/image/postman_logo.png" width="4%">
+    <img src="./database/image/github_logo.png" width="5%">
+    <img src="./database/image/git_logo.png" width="5%">
+    <img src="./database/image/canva.png" width="5%">
+    <img src="./database/image/trello.png" width="6%">
+</div>
 
 
 
