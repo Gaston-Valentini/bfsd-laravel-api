@@ -3,10 +3,10 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 
 <p>
    <div align="center">
-      <img src="./database/image/cabecera.jpg" width="35%">
+      <img src="./database/image/cabecera.jpg" width="90%">
    </div>    
 </p>
-<br></br>
+
 
 ### 📋 Contenido del Readme
 
@@ -16,7 +16,6 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 - <a href="#📉-diagrama-de-la-base-de-datos"><h4>📉 Diagrama de la base de datos</h4></a>
 - <a href="#💡endpoints"><h4>💡 Endpoints</h4></a>
 - <a href="#⚙️-instrucciones-de-uso"><h4>⚙️ Instrucciones de uso</h4></a>
-- <a href="#⚠️-posibles-errores"><h4>⚠️ Posibles errores</h4></a>
 - <a href="#📅-organización"><h4>📅 Organización</h4></a>
 - <a href="#👏-agradecimientos"><h4>👏 Agradecimientos</h4></a>
 - <a href="#🌟-mejoras"><h4>🌟 Mejoras</h4></a>
@@ -521,6 +520,8 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 1. Clona este repositorio en tu máquina local usando el siguiente comando: `git clone [URL del repositorio]`.
 2. A continuación instala todas las dependencias con el comando ` composer install `.
 
+    <a href="#⚠️-posibles-errores"><h4>⚠️ Posibles errores</h4></a>
+
 3. Conectamos nuestro repositorio con la base de datos mediante las credenciales en el archivo con las variables de entorno que se encuentran en el archivo .env
 
     ``` 
@@ -543,43 +544,66 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
     <div align="center">
         <img src="./database/image/Acceder_Archivo_Postman.gif" style="max-width: 70%;" width="500">
     </div>
+    <div align="center">
+   <em>Acceder al archivo de Postman</em>
+    </div>
+
     - Por último, importa el documento en Postman.
     <div align="center">
         <img src="./database/image/Postman_Import.gif" style="max-width: 70%;" width="500">
+    </div>
+    <div align="center">
+   <em>Importamos el documento en Postman.</em>
     </div>
 
 
 ## ⚠️ Posibles errores
 Entre el punto 1 y 2 del apartado anterior, puede ser que aparezca un error relacionado con la configuración de php. 
-- 🆘 Lo solucionaremos de la siguiente forma:
-    1-  Accede a la carpeta donde esté instalado php en el dispositivo php.
+-  Lo solucionaremos de la siguiente forma:
+
+    1- Accede a la carpeta donde esté instalado php en el dispositivo php.
     2- Accede al archivo php.ini.
     3- Descomenta la línea:
 
         extension=pdo_mysql
 
+    4- Guarda los cambios del documento, cierra el documento y el VisualStudio.
+    5- Accede a VisualStudio de nuevo y continua con las <a href="#⚙️-instrucciones-de-uso"><p>instrucciones de uso.</p></a>
+
 <div align="center">
     <img src="./database/image/php.ini.gif" style="max-width: 70%;" width="500">
    </div>
+     
+<div align="center">
+   <em>Descomentamos en el archivo php la línea que nos genera el conflito.</em>
+   </div>
+     
+
 
 ## 📅 Organización
 Para trabajar en equipo de forma organizada hemos utilizado las siguientes herramientas:
-- Trello 🖇️
+- <strong>Trello 🖇️</strong>
 
 <div align="center">
     <img src="./database/image/Organizacion_Tablon_Trello.gif" style="max-width: 70%;" width="500">
    </div>
-
 <div align="center">
-    <a href = "https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel">Accede a nuestro tablón en Trello</a>
+   <em>Disposión de nuestro tablón,</em>
+      <a href = "https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel">accede a él en Trello.</a>
+</div>
+<br>
+- <strong>Ramas en el repositorio</strong> 🪴
 
-   </div>
-
-- Ramas en el repositorio 🪴
+- La estructura del respositorio está compuesta por cinco ramas:
+        - <strong>Master</strong>: Rama principal del proyecto.
+        - <strong>Dev</strong>: Rama en la que se combinan los trabajos de las otras ramas y se testean antes de pasarse a producción.
+        - <strong>Toni, Gastón, Marta</strong>: Ramas individuales para cada integrante del equipo.
 <div align="center">
     <img src="./database/image/Ramas_Repositorio.gif" style="max-width: 70%;" width="500">
    </div>
-
+<div align="center">
+   <em>Repositorio de GitHub</em>
+</div>
 
 ## 👏 Agradecimientos
 Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta la fecha en el BootCamp FullStack Developer.
