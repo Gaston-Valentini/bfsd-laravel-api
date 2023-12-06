@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Room;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -10,15 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MemberController extends Controller
 {
-    public function createMember(Request $request)
+    public function addUserRoom(Request $request)
     {
-        Log::info('Create Member');
         try {
             $userId = auth()->id();
-            $roomId = $request->input('room_id');
+            $room_id = $request->input('room_id');
             $newMember = Member::create([
                 "user_id" => $userId,
-                "room_id" => $roomId
+                "room_id" => $room_id
             ]);
 
             return response()->json(
@@ -41,6 +40,51 @@ class MemberController extends Controller
             );
         }
     }
+
+    public function addMember(Request $request)
+    {
+        try {
+            $userId = auth()->id();
+            $userCreateRoom = Room::where("user_id", $userId);
+
+            if(!$userCreateRoom){
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Don't have auth"
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+            }
+
+            $user_id = $request->input('user_id');
+            $room_id = $request->input('room_id');
+
+            $addMember = Member::create([
+                "user_id" => $user_id,
+                "room_id" => $room_id
+            ]);
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Member created",
+                    "data" => $addMember
+                ],
+                Response::HTTP_CREATED
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error creating member"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 
     public function getAllMembers()
     {
@@ -68,10 +112,12 @@ class MemberController extends Controller
         }
     }
 
-    public function getMemberById($id)
+    public function getMemberById(Request $request)
     {
         try {
-            $member = Member::with(["user", "room"])->find($id)->get();
+
+            $userId = auth()->id();
+            $member = Member::where("user_id", $userId)->get();
 
             return response()->json(
                 [
@@ -94,7 +140,44 @@ class MemberController extends Controller
         }
     }
 
-    public function deleteMemberById($id)
+    public function membersRoom(Request $request)
+    {
+        try {
+            $room_id= $request->input('room_id');
+            $member = Member::where('room_id', $room_id)->get();
+            if(count($member) == 0){
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Currently there aren't members in this room.",
+                    ],
+                    Response::HTTP_OK
+                );
+            } else{
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Get all users form this room.",
+                        "data" => $member
+                    ],
+                    Response::HTTP_OK
+                );
+            }
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error getting members"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function exitRoomById($id)
     {
         try {
             $memberId = Member::query()->find($id);
@@ -120,13 +203,56 @@ class MemberController extends Controller
                 );
             }
             $memberDeleted = $memberId->delete();
-            print_r($memberDeleted);
 
             if ($memberDeleted) {
                 return response()->json(
                     [
                         "success" => true,
                         "message" => "Member deleted successfully"
+                    ],
+                    Response::HTTP_OK
+                );
+            }
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error deleting member"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function deleteMemberById(Request $request)
+    {
+        try {
+            $userId = auth()->id();
+            $userCreateRoom = Room::where("user_id", $userId);
+
+            if(!$userCreateRoom){
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Don't have auth"
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+            }
+
+            $user_id = $request->input('user_id');
+            $room_id = $request->input('room_id');
+
+            $memberDeleted = $memberId->delete();
+
+            if ($memberDeleted) {
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Member deleted successfully",
+                        "data" => $memberDeleted
                     ],
                     Response::HTTP_OK
                 );

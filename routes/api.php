@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\MemberController;
 
@@ -99,6 +100,7 @@ Route::group([
 ], function () {
     Route::get('/user', [UserController::class, 'getAllUsers']);
     Route::delete('/user/{id}', [UserController::class, 'deleteUserById']);
+    Route::get('/members', [MemberController::class, 'getAllMembers']);
 });
 
 //MEMBERS
@@ -107,8 +109,11 @@ Route::group([
         "auth:sanctum"
     ]
 ], function () {
-    Route::post('/member', [MemberController::class, 'createMember']);
-    Route::get('/members', [MemberController::class, 'getAllMembers']);
-    Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
-    Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);
+    Route::post('/members', [MemberController::class, 'addMember']);
+    Route::post('/member', [MemberController::class, 'addUserRoom']);
+    Route::get('/member', [MemberController::class, 'getMemberById']);
+    Route::get('/member/room', [MemberController::class, 'membersRoom']);
+    Route::delete('/member', [MemberController::class, 'deleteMemberById']);
+    Route::delete('/member/{id}', [MemberController::class, 'exitRoomById']);
+
 });
