@@ -42,5 +42,31 @@ class MemberController extends Controller
         }
     }
 
+    public function getAllMembers()
+    {
+        try {
+            $members = Member::query()->get();
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Get member successfully",
+                    "data" => $members
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error getting members"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
     
 }
