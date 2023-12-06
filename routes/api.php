@@ -108,7 +108,7 @@ Route::group([
     ]
 ], function () {
     Route::post('/member', [MemberController::class, 'addUserRoom']);
-    Route::post('/member/{id}', [MemberController::class, 'addMember']);
+    Route::post('/members', [MemberController::class, 'addMember']);
     Route::get('/members', [MemberController::class, 'getAllMembers']);
     Route::get('/member/{id}', [MemberController::class, 'getMemberById']);
     Route::delete('/member/{id}', [MemberController::class, 'deleteMemberById']);

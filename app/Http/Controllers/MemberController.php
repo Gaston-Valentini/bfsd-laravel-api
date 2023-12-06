@@ -41,7 +41,39 @@ class MemberController extends Controller
             );
         }
     }
-    
+
+    public function addMember(Request $request)
+    {
+        try {
+            //Recuperamos la infor del body
+            $user_id = $request->input('user_id');
+            $room_id = $request->input('room_id');
+
+            $addMember = Member::create([
+                "user_id" => $user_id,
+                "room_id" => $room_id
+            ]);
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Member created",
+                    "data" => $addMember
+                ],
+                Response::HTTP_CREATED
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error creating member"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 
     public function getAllMembers()
     {
