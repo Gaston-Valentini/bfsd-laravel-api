@@ -65,6 +65,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             POST http://127.0.0.1:8000/api/register
 
         Body:
+
              JSON
             {
                "name": "Zaira",
@@ -80,6 +81,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             POST http://127.0.0.1:8000/api/login 
 
         Body:
+
              JSON
             {
                 "email": "zaira@zaira.com",
@@ -94,18 +96,22 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 1. Obtener un usuario por Id.
     - Descripción: Obtener un usuario por el id, si el id enviado    corresponde con el id del token que hemos obtenido con el Login.
+
             GET http://127.0.0.1:8000/api/user/{id}  
 
         Auth:
+
             Auth : User 
             Barer token : Token
  
         
 2. Actualizar un usuario por Id.
     - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
+
             PUT http://127.0.0.1:8000/api/user/{id}
 
         Auth:
+
             Auth : User 
             Barer token : Token
 
@@ -116,6 +122,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             DELETE http://127.0.0.1:8000/api/user/{id}          
 
         Auth:
+
             Auth : Admin
             Barer token : Token
        
@@ -125,6 +132,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             GET http://127.0.0.1:8000/api/user
 
         Auth:
+
             Auth : User 
             Barer token : Token
     
@@ -136,60 +144,75 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 1. Crear un juego.
     - Descripción: Crear un juego.
+
             POST http://127.0.0.1:8000/api/createGame
 
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
 
         Body:
-            JSON
+
+              JSON
                 {
                 "name": "GTA",
-                "description": "Un videojuego",
+                "description": "El mejor videojuego",
                 "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
-                }
+                }  
+ 
 
 2. Obtener todos los juegos.
     - Descripción: Obtener todos los juegos.
+
             GET http://127.0.0.1:8000/api/games
 
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
+
 
 3. Actualizar un juego por el Id.
     - Descripción: Actualizar un juego por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+
             POST http://127.0.0.1:8000/api/updateGameById/{id}
 
         Auth:
-            Auth : User 
-            Barer token : Token
-            
+
+             Auth : User 
+             Barer token : Token
+
         Body:
-            JSON:
-            {
-            "name": "GTA",
-            "description": "El mejor videojuego",
-            "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
-            }
+
+              JSON
+                {
+                "name": "GTA",
+                "description": "El mejor videojuego",
+                "image": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFct26V9mJnZi4aSS.png"
+                }  
+
 
 4. Recuperar un juego por el Id.
     - Descripción: Recuperar un juego por el Id.
+
             GET http://127.0.0.1:8000/api/getGameById/{id}
 
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
             
 
 5. Eliminar un juego por el Id.
     - Descripción: Eliminar un juego por el Id.
+
             POST http://127.0.0.1:8000/api/deleteGame/{id}
 
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
             
                      
 </details>
@@ -200,44 +223,54 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 1. Crear una sala.
     - Descripción: Crear una sala.
+
             POST http://127.0.0.1:8000/api/room
 
+
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
 
         Body:
-            JSON
-            {
-            "game_id": 3,
-            "name":"Escuadrón GTA"
-            }
+
+              JSON
+                {
+                "game_id": 3,
+                "name":"Escuadrón GTA"
+                }
+
 
 2. Obtener todas las salas.
     - Descripción: Obtener todos las salas.
+
             GET http://127.0.0.1:8000/api/room
 
-        Auth:
-            Auth : User 
-            Barer token : Token
+      Auth:
+
+             Auth : User 
+             Barer token : Token
 
 
 3. Actualizar una sala por el Id.
     - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+
             PUT http://127.0.0.1:8000/api/room/{id}
 
-        Auth:    
-            Auth : User 
-            Barer token : Token
-            
-        
-        Body:
-            JSON:
-                {
-                "name": "Malos GTA"
-                }
+      Auth:
 
-            NOTA: El usuario puede modificar cualquiera de los siguientes campos y, para realizar la actualización no es necesario introducir todos los campos.
+             Auth : User 
+             Barer token : Token
+            
+        Body:
+
+              JSON
+                {
+                "name":"Malos GTA"
+                }    
+       
+
+        NOTA: El usuario puede modificar cualquiera de los siguientes campos y, para realizar la actualización no es necesario introducir todos los campos.
                 
                 'game_id', 'name','image_url','is_active'
                 
@@ -246,20 +279,22 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 
             GET http://127.0.0.1:8000/api/room/{id}
         
-        Auth:
-            Auth : User 
-            Barer token : Token
-            
+
+      Auth:
+
+             Auth : User 
+             Barer token : Token
      
 5. Recuperar todas las salas que sean activas.
     - Descripción: Recuperar una sala por el Id.
                 
             GET http://127.0.0.1:8000/api/room/active
                 
-        Auth:        
-            Auth : User 
-            Barer token : Token
-            
+
+      Auth:
+
+             Auth : User 
+             Barer token : Token
             
 
 6. Eliminar una sala por el Id.
@@ -267,9 +302,11 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 
             POST http://127.0.0.1:8000/api/room/{id}
         
-        Auth:   
-            Auth : User 
-            Barer token : Token
+
+      Auth:
+
+             Auth : User 
+             Barer token : Token
             
                
 </details>
@@ -301,7 +338,8 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
             GET http://127.0.0.1:8000/api/messages
 
-        Auth:   
+        Auth:
+
              Auth : User 
              Barer token : Token
 
@@ -311,16 +349,17 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             PUT http://127.0.0.1:8000/api/updatemessage/{id}
 
         Auth:
-            Auth : User 
-            Barer token : Token
-            
-     
+
+             Auth : User 
+             Barer token : Token
+
         Body:
 
-            JSON:
+              JSON:
                 {
                 "message": "Hola Grupi"
                 }
+
             
 4. Recuperar un mensaje por el Id.
     - Descripción: Recuperar una sala por el Id.
@@ -328,18 +367,20 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             GET http://127.0.0.1:8000/api/message/{id}
         
         Auth:
-            Auth : User 
-            Barer token : Token
-            
+
+             Auth : User 
+             Barer token : Token
             
 5. Eliminar un mensaje por el Id.
     - Descripción: Eliminar una sala por el Id.
             
             POST http://127.0.0.1:8000/api/deletemessage/{id}
 
+
         Auth:
-            Auth : User 
-            Barer token : Token
+
+             Auth : User 
+             Barer token : Token
             
       
 </details>
