@@ -16,6 +16,8 @@ __<p align="center">Proyecto 6 - Full Stack Developer Bootcamp en GeeksHubs Acad
 - <a href="#📉-diagrama-de-la-base-de-datos"><h4>📉 Diagrama de la base de datos</h4></a>
 - <a href="#💡endpoints"><h4>💡 Endpoints</h4></a>
 - <a href="#⚙️-instrucciones-de-uso"><h4>⚙️ Instrucciones de uso</h4></a>
+- <a href="#⚠️-posibles-errores"><h4>⚠️ Posibles errores</h4></a>
+- <a href="#📅-organización"><h4>📅 Organización</h4></a>
 - <a href="#👏-agradecimientos"><h4>👏 Agradecimientos</h4></a>
 - <a href="#🌟-mejoras"><h4>🌟 Mejoras</h4></a>
 - <a href="#📧-contacto"><h4>📧 Contacto</h4></a>
@@ -55,8 +57,9 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 
 ## 💡Endpoints
+
 <details>
-<summary>/auth</summary>
+<summary>/user</summary>
 <br>
 
 1. Crear un usuario, registro.
@@ -87,14 +90,21 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
                 "email": "zaira@zaira.com",
                 "password": "123456"
             }
-        
-    
-</details>
-<details>
-<summary>/usuario</summary>
-<br>
 
-1. Obtener un usuario por Id.
+3. Logout.
+    - Descripción:Cierra la sesión del usuario autenticado.
+
+            POST http://127.0.0.1:8000/api/login 
+
+        Body:
+
+             JSON
+            {
+                "email": "zaira@zaira.com",
+                "password": "123456"
+            }
+
+4. Obtener un usuario por Id.
     - Descripción: Obtener un usuario por el id, si el id enviado    corresponde con el id del token que hemos obtenido con el Login.
 
             GET http://127.0.0.1:8000/api/user/{id}  
@@ -105,7 +115,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             Barer token : Token
  
         
-2. Actualizar un usuario por Id.
+5. Actualizar un usuario por Id.
     - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
 
             PUT http://127.0.0.1:8000/api/user/{id}
@@ -116,7 +126,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             Barer token : Token
 
 
-3. Eliminar un usuario por el Id.
+6. Eliminar un usuario por el Id.
     - Descripción: Eliminar un usuario por el id.
 
             DELETE http://127.0.0.1:8000/api/user/{id}          
@@ -126,7 +136,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             Auth : Admin
             Barer token : Token
        
-4. Obtener todos los usuarios.
+7. Obtener todos los usuarios.
     - Descripción: Obtener los datos de todos los usuarios.
 
             GET http://127.0.0.1:8000/api/user
@@ -444,7 +454,7 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
             
 4. Recuperar todos los miembros.
-    - Descripción: Recuperar todos los usuarios y las salas a las que pertenece.
+    - Descripción: Recuperar todos los usuarios y las salas.
 
             GET http://127.0.0.1:8000/api/members
         
@@ -509,7 +519,8 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 ## ⚙️ Instrucciones de uso
 
 1. Clona este repositorio en tu máquina local usando el siguiente comando: `git clone [URL del repositorio]`.
-2. A continuación instala todas las dependencias con el comando ` composer install `
+2. A continuación instala todas las dependencias con el comando ` composer install `.
+
 3. Conectamos nuestro repositorio con la base de datos mediante las credenciales en el archivo con las variables de entorno que se encuentran en el archivo .env
 
     ``` 
@@ -519,13 +530,21 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
     DB_DATABASE=laravel
     DB_USERNAME=root
     DB_PASSWORD=
-
     ```  
 
-4. Ejecutamos las migraciones mediante el comando `php artisan migrate` 
-5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`
-6. Usamos los endpoints almacenados en database/routes/api.php para usar las distintas funcionalidades que se han diseñado.
+4. Ejecutamos las migraciones mediante el comando `php artisan migrate`.
+5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`.
 
+## ⚠️ Posibles errores
+
+
+## 📅 Organización
+Para trabajar en equipo de forma organizada hemos utilizado las siguientes herramientas:
+- Trello 🖇️
+
+[Acceder a Trello](https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel)
+
+- Ramas en el repositorio 🪴
 
 ## 👏 Agradecimientos
 Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta la fecha en el BootCamp FullStack Developer.
