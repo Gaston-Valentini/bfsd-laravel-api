@@ -109,7 +109,6 @@ class UserController extends Controller
 
         // Obtener todos los datos enviados por el usuario
         $userData = $request->all();
-        dump($userData);
 
         if($userData !== []){
             foreach ($userData as $key => $value) {
@@ -158,7 +157,6 @@ class UserController extends Controller
         try {
 
             $userDelete = User::destroy($id);
-            dump($userDelete);
 
 
         } catch (\Throwable $th) {

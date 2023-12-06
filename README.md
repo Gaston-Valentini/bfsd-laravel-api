@@ -54,17 +54,16 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
 
 # 💡Endpoints
 <details>
-<summary>Click para visualizar</summary>
+<summary>/auth</summary>
 <br>
 
 
-  - USUARIOS
-
-    - 1- Crear un usuario, registrarnos.
+    - 1- Crear un usuario, registro.
                Descripción: Crear un nuevo usuario, recuperando la información de los campos requeridos a través del body. Y, se genera un registro en la base de datos de un nuevo usuario con el rol de "user".
 
             POST http://127.0.0.1:8000/api/register
-        body:
+
+        Body:
         ``` js
             {
                "name": "Zaira",
@@ -78,33 +77,51 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             - Descripción: Al acceder, nos devuelve un token a través del body que utilizaremos más tarde en las rutas habilitadas para los usuarios.
 
             POST http://127.0.0.1:8000/api/login 
-        body:
+
+        Body:
         ``` js
             {
                 "email": "zaira@zaira.com",
                 "password": "123456"
             }
         ```
-    - 3- Obtener USER por Id.
-
+    
+</details>
+<summary>/usuario</summary>
+<br>
+    - 1- Obtener un usuario por Id.
+        - Descripción: Obtener un usuario por el id, si el id enviado corresponde con el id del token que hemos obtenido con el Login.
             GET http://127.0.0.1:8000/api/user/{id}  
+
+            Auth : User 
+            Barer token : Token
+ 
         
-    - 4- Actualizar USER por Id.
-            - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
+    - 2- Actualizar un usuario por Id.
+        - Descripción: Con el token obtenido al hacer Login, el usuario podra editar sus datos.
 
             PUT http://127.0.0.1:8000/api/user/{id}
 
-  - SuperAdmin
+            Auth : User 
+            Barer token : Token
 
-    - 5- ELiminar USER por Id.
+
+    - 3- Eliminar un usuario por el Id.
+        - Descripción: Eliminar un usuario por el id.
 
             DELETE http://127.0.0.1:8000/api/user/{id}          
+
+            Auth : Admin
+            Barer token : Token
        
-    - 6- Obtener todos los USER`s
-            - Descripción: Al acceder como superAdmin, se obtendra el token con acceso requerido para la obtencion de todos los usuarios.
+    - 4- Obtener todos los usuarios.
+        - Descripción: Obtener los datos de todos los usuarios.
 
             GET http://127.0.0.1:8000/api/user
-     ...
+
+             Auth : User 
+            Barer token : Token
+    
 </details>
 
 # ⚙️ Instrucciones de uso
