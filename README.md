@@ -545,6 +545,10 @@ Para trabajar en equipo de forma organizada hemos utilizado las siguientes herra
 [Acceder a Trello](https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel)
 
 - Ramas en el repositorio 🪴
+<div align="center">
+    <img src="./database/image/Ramas_Repositorio.gif" style="max-width: 70%;" width="500">
+   </div>
+
 
 ## 👏 Agradecimientos
 Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta la fecha en el BootCamp FullStack Developer.
