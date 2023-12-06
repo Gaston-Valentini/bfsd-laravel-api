@@ -110,8 +110,8 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             Barer token : Token
 
 
-    - 3- Eliminar un usuario por el Id.
-        - Descripción: Eliminar un usuario por el id.
+3. Eliminar un usuario por el Id.
+    - Descripción: Eliminar un usuario por el id.
 
             DELETE http://127.0.0.1:8000/api/user/{id}          
 
