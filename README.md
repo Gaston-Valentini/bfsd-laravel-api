@@ -533,40 +533,47 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
     ```  
 
 4. Ejecutamos las migraciones mediante el comando `php artisan migrate`.
-5. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`.
-6. Importar endpoints con Postman.
+5. Ejectuamos los seeders mediante el comando `php artisan db:seed` .
+ - NOTA: Si queremos ejecutar tan sólo un Seeder en concreto lo haremos mediante el comando `php artisan db:seed --class=INSERTARSEEDER`.
+ En este caso, en INSERTARSEEDER tendremos que indicar el nombre del seeder.
+
+6. Si estamos en desarrollo, lo hacemos funcionar y actualizarse en tiempo real mediante el comando `php artisan serve`.
+7. Importar endpoints con Postman.
     - En la carpeta app/Http/Postman se encuentra el archivo para importar todas las rutas a través de Postman:
     <div align="center">
         <img src="./database/image/Acceder_Archivo_Postman.gif" style="max-width: 70%;" width="500">
     </div>
-    - Por último, importa el documento en Postman:
+    - Por último, importa el documento en Postman.
     <div align="center">
         <img src="./database/image/Postman_Import.gif" style="max-width: 70%;" width="500">
     </div>
 
 
-
 ## ⚠️ Posibles errores
+Entre el punto 1 y 2 del apartado anterior, puede ser que aparezca un error relacionado con la configuración de php. 
+- 🆘 Lo solucionaremos de la siguiente forma:
+    1-  Accede a la carpeta donde esté instalado php en el dispositivo php.
+    2- Accede al archivo php.ini.
+    3- Descomenta la línea:
 
-<div style="text-align: center;">
-    <div style="display: inline-block; margin: 3em;">
-        <img src="./database/image/php.ini.gif" alt="Role superAdmin" width="320" height="240">
-    </div>
-</div>
+        extension=pdo_mysql
+
+<div align="center">
+    <img src="./database/image/php.ini.gif" style="max-width: 70%;" width="500">
+   </div>
 
 ## 📅 Organización
 Para trabajar en equipo de forma organizada hemos utilizado las siguientes herramientas:
 - Trello 🖇️
 
-<div style="text-align: center;">
-    <div style="display: inline-block; margin: 3em;">
-        <img src="./database/image/Organizacion_Tablon_Trello.gif" alt="Role superAdmin" width="320" height="240">
-    </div>
-</div>
+<div align="center">
+    <img src="./database/image/Organizacion_Tablon_Trello.gif" style="max-width: 70%;" width="500">
+   </div>
 
-[Acceder a Trello](https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel)
+<div align="center">
+    <a href = "https://trello.com/invite/b/mSeMH7B8/ATTI759ea84de194ee4ce927949c8440304fA66B62BE/proyecto-laravel">Accede a nuestro tablón en Trello</a>
 
-
+   </div>
 
 - Ramas en el repositorio 🪴
 <div align="center">
@@ -578,7 +585,8 @@ Para trabajar en equipo de forma organizada hemos utilizado las siguientes herra
 Este proyecto es el reflejo de todos los conocimientos que hemos adquirido hasta la fecha en el BootCamp FullStack Developer.
 
 ## 🌟 Mejoras
-<!-- TODO -->
+Las mejoras que tendríamos se podrían implementar en este proyecto son las siguientes:
+- Dockerización
 
 ## 📧 Contacto
 Podéis contactar con nosotros a través de los siguientes medios de comunicación:
