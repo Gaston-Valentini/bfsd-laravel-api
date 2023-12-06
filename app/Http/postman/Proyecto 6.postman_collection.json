@@ -124,6 +124,30 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Recuperar las salas activas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/room/is_active",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"room",
+								"is_active"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -171,6 +195,39 @@
 							"path": [
 								"api",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
 							]
 						}
 					},
@@ -319,6 +376,14 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Games",
+			"item": []
+		},
+		{
+			"name": "Message",
+			"item": []
 		},
 		{
 			"name": "Ruta Healthcheck",

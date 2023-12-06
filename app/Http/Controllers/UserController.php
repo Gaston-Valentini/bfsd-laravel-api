@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     //Validaciones
      private function validateDataUser(Request $request)
-     {
+        {
          $validator = Validator::make($request->all(), [
              'name' => 'min:3|max:50',
              'surname' => 'min:3|max:50',
@@ -109,7 +109,6 @@ class UserController extends Controller
 
         // Obtener todos los datos enviados por el usuario
         $userData = $request->all();
-        dump($userData);
 
         if($userData !== []){
             foreach ($userData as $key => $value) {
@@ -158,7 +157,6 @@ class UserController extends Controller
         try {
 
             $userDelete = User::destroy($id);
-            dump($userDelete);
 
 
         } catch (\Throwable $th) {

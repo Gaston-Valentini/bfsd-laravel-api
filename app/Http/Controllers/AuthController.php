@@ -153,39 +153,45 @@ class AuthController extends Controller
         }
     }
 
-    //logout
+    //Logout
     public function logout(Request $request)
-    {
-        try {
-            if ($request->user()) {
-                $request->user()->currentAccessToken()->delete();
+            {
+                try {
+                    $user = $request->user();
 
-                return response()->json(
-                    [
-                        "success" => true,
-                        "message" => "Logout successfully"
-                    ],
-                    Response::HTTP_OK
-                );
-            } else {
-                return response()->json(
-                    [
-                        "success" => false,
-                        "message" => "Error in the logout"
-                    ],
-                    Response::HTTP_UNAUTHORIZED
-                );
-            }
-        } catch (\Throwable $th) {
-            Log::error($th->getMessage());
+                if ($user) {
+                        $accessToken = $request->bearerToken();
+                    $token = PersonalAccessToken::findToken($accessToken);
+
+                    if ($token) {
+                        $token->delete();
 
             return response()->json(
                 [
-                    "success" => false,
-                    "message" => "Error al cerrar sesión del usuario."
+                    "success" => true,
+                    "message" => "Logout successfully"
                 ],
-                Response::HTTP_INTERNAL_SERVER_ERROR
+                Response::HTTP_OK
+            );
+        } else {
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Error in the logout"
+                ],
+                Response::HTTP_UNAUTHORIZED
             );
         }
+    } catch (\Throwable $th) {
+        Log::error($th->getMessage());
+
+        return response()->json(
+            [
+                "success" => false,
+                "message" => "Error al cerrar sesión del usuario."
+            ],
+            Response::HTTP_INTERNAL_SERVER_ERROR
+        );
     }
+}
 }
