@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Room;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -12,7 +12,6 @@ class MemberController extends Controller
 {
     public function addUserRoom(Request $request)
     {
-        Log::info('Create Member');
         try {
             $userId = auth()->id();
             $room_id = $request->input('room_id');
@@ -45,6 +44,18 @@ class MemberController extends Controller
     public function addMember(Request $request)
     {
         try {
+            $userId = auth()->id();
+            $userCreateRoom = Room::where("user_id", $userId);
+
+            if(!$userCreateRoom){
+                return response()->json(
+                    [
+                        "success" => false,
+                        "message" => "Don't have auth"
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+            }
             //Recuperamos la infor del body
             $user_id = $request->input('user_id');
             $room_id = $request->input('room_id');

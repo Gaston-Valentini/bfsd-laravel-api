@@ -384,6 +384,87 @@ Para desarrollar este proyecto, hemos hecho uso de las siguientes tecnologías:
             
       
 </details>
+<details>
+<summary>/members</summary>
+<br>
+
+1. Añadir un miembro a la sala.
+    - Descripción: Añadir un miembro a la sala.
+      
+             POST http://127.0.0.1:8000/api/members
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+
+        Body:
+
+              JSON
+                {
+                "user_id": 2,
+                "room_id": 10
+                }
+
+2. Añadirse a una sala.
+    - Descripción: Formar parte de una sala ya creada.
+
+            POST http://127.0.0.1:8000/api/member
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+
+
+        Body:
+
+              JSON
+                {
+                "room_id": 10
+                }
+
+3. Actualizar un mensaje por el Id.
+    - Descripción: Actualizar una sala por el Id, siempre que el usuario que está intentando modificarlo sea el creador del mismo.
+
+            PUT http://127.0.0.1:8000/api/updatemessage/{id}
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+
+        Body:
+
+              JSON:
+                {
+                "message": "Hola Grupi"
+                }
+
+            
+4. Recuperar un mensaje por el Id.
+    - Descripción: Recuperar una sala por el Id.
+
+            GET http://127.0.0.1:8000/api/message/{id}
+        
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+            
+5. Eliminar un mensaje por el Id.
+    - Descripción: Eliminar una sala por el Id.
+            
+            POST http://127.0.0.1:8000/api/deletemessage/{id}
+
+
+        Auth:
+
+             Auth : User 
+             Barer token : Token
+            
+      
+</details>
 
 ## ⚙️ Instrucciones de uso
 
